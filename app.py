@@ -186,6 +186,8 @@ with tab8:
     st.subheader("📡 Check Play Store for New Reviews")
     st.caption("Click the button to fetch the latest reviews directly from Google Play and classify any new ones instantly.")
 
+    # Hybrid matching: prefer review_id (reliable), fallback to reviewer+text match
+    known_ids = set(df["review_id"].dropna()) if "review_id" in df.columns else set()
     known_keys = set((r, t) for r, t in zip(df["reviewer"], df["text"]))
 
     if st.button("🔄 Check for New Reviews Now", type="primary"):
@@ -199,7 +201,17 @@ with tab8:
                     sort=Sort.NEWEST,
                     count=20,
                 )
-                new_reviews = [r for r in result if (r.get("userName"), r.get("content")) not in known_keys]
+
+                new_reviews = []
+                for r in result:
+                    rid = r.get("reviewId")
+                    key = (r.get("userName"), r.get("content"))
+                    # If we have a review_id for this fetched review, trust ID match first
+                    if rid and rid in known_ids:
+                        continue  # already known
+                    if key in known_keys:
+                        continue  # already known (fallback match)
+                    new_reviews.append(r)
 
                 if new_reviews:
                     st.success(f"Found {len(new_reviews)} new review(s) since last dataset snapshot!")
