@@ -39,8 +39,8 @@ st.divider()
 # ---------------------------------------------------------------
 # Tabs for each section
 # ---------------------------------------------------------------
-tab1, tab2, tab3, tab4, tab5, tab6, tab7 = st.tabs([
-    "Overview", "Bugs", "Transactions", "UI/UX", "Feedback", "Priority Complaints", "Live Checker"
+tab1, tab2, tab3, tab4, tab5, tab6, tab7, tab8 = st.tabs([
+    "Overview", "Bugs", "Transactions", "UI/UX", "Feedback", "Priority Complaints", "Live Checker", "Play Store Monitor"
 ])
 
 # ---------------- TAB 1: Overview ----------------
@@ -181,5 +181,38 @@ with tab7:
         else:
             st.warning("Please type a complaint first.")
 
+# ---------------- TAB 8: Live Play Store Monitor ----------------
+with tab8:
+    st.subheader("📡 Check Play Store for New Reviews")
+    st.caption("Click the button to fetch the latest reviews directly from Google Play and classify any new ones instantly.")
+
+    known_keys = set((r, t) for r, t in zip(df["reviewer"], df["text"]))
+
+    if st.button("🔄 Check for New Reviews Now", type="primary"):
+        with st.spinner("Fetching latest reviews from Google Play..."):
+            try:
+                from google_play_scraper import reviews, Sort
+                result, _ = reviews(
+                    "invo8.meezan.mb",
+                    lang='en',
+                    country='pk',
+                    sort=Sort.NEWEST,
+                    count=20,
+                )
+                new_reviews = [r for r in result if (r.get("userName"), r.get("content")) not in known_keys]
+
+                if new_reviews:
+                    st.success(f"Found {len(new_reviews)} new review(s) since last dataset snapshot!")
+                    for r in new_reviews:
+                        cats, urgency, churn = classify_live(r.get("content", ""))
+                        with st.container(border=True):
+                            st.markdown(f"🆕 **{r.get('userName', 'Unknown')}** (Rating: {r.get('score', '?')}⭐)")
+                            st.write(r.get("content", ""))
+                            st.markdown(f"**Detected Category:** {', '.join(cats)} | **Urgency:** {urgency} | **Churn Risk:** {'Yes ⚠️' if churn else 'No'}")
+                else:
+                    st.info("No new reviews found right now. Google Play may take some time to index a newly posted review - try again in a few minutes.")
+            except Exception as e:
+                st.error(f"Could not fetch reviews right now: {e}")
+
 st.divider()
-st.caption("classification powered by a pretrained zero-shot AI model (no training data required).")
+st.caption("Prototype built as part of AI/Data Analytics internship project. Bulk classification powered by a pretrained zero-shot AI model (no training data required).")
