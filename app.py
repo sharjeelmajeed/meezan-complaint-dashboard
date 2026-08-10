@@ -215,4 +215,4 @@ with tab8:
                 st.error(f"Could not fetch reviews right now: {e}")
 
 st.divider()
-st.caption("Prototype built as part of AI/Data Analytics internship project. Bulk classification powered by a pretrained zero-shot AI model (no training data required).")
+st.caption("classification powered by a pretrained zero-shot AI model (no training data required).")
