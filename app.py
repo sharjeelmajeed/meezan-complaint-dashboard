@@ -1,5 +1,6 @@
 """
 Meezan Bank App - AI Complaint Analysis Dashboard
+
 """
 
 import streamlit as st
@@ -38,8 +39,8 @@ st.divider()
 # ---------------------------------------------------------------
 # Tabs for each section
 # ---------------------------------------------------------------
-tab1, tab2, tab3, tab4, tab5, tab6 = st.tabs([
-    "Overview", "Bugs", "Transactions", "UI/UX", "Feedback", "Priority Complaints"
+tab1, tab2, tab3, tab4, tab5, tab6, tab7 = st.tabs([
+    "Overview", "Bugs", "Transactions", "UI/UX", "Feedback", "Priority Complaints", "Live Checker"
 ])
 
 # ---------------- TAB 1: Overview ----------------
@@ -140,5 +141,45 @@ with tab6:
     else:
         st.info("No high-priority complaints found in this dataset.")
 
+# ---------------- TAB 7: Live Checker ----------------
+with tab7:
+    st.subheader("🔎 Type a Complaint - Get Instant Classification")
+    st.caption("Note: This demo uses a fast keyword-based classifier (lightweight, works instantly on the web). The full AI model used for the bulk analysis above is heavier and runs offline.")
+
+    categories_keywords = {
+        "Transaction": ["deducted", "refund", "no cash", "unpaid", "double", "twice", "withdrew", "activat"],
+        "Login": ["login", "credentials", "password", "fingerprint", "biometric", "cooling period", "cnic", "otp"],
+        "Bug": ["glitch", "menu", "freeze", "load", "screenshot", "stuck", "crash", "not working", "not open"],
+        "Security": ["breach", "unknown device", "data breaching", "trust", "unauthorized", "rooted", "modified"],
+        "Support": ["complain", "helpline", "customer support", "unresolved", "no solution", "branch visit"],
+        "UI/Design": ["layout", "theme", "interface", "design", "dark mode", "ui"],
+        "Suggestion": ["please add", "should improve", "kindly", "would be better", "request"],
+    }
+
+    urgency_keywords = ["days", "weeks", "months", "years", "closing my account", "close my account",
+                         "considering", "highly disappointed", "extremely"]
+    churn_keywords = ["closing my account", "close my account", "switch bank", "leaving"]
+    negative_words = ["bad", "disappointed", "worst", "scammer", "useless", "frustrat"]
+
+    def classify_live(text):
+        text_l = text.lower()
+        matched = [cat for cat, kws in categories_keywords.items() if any(kw in text_l for kw in kws)]
+        urgency = sum(1 for kw in urgency_keywords if kw in text_l)
+        churn = any(kw in text_l for kw in churn_keywords) or ("years" in text_l and any(neg in text_l for neg in negative_words))
+        return matched or ["Positive / Other"], urgency, churn
+
+    user_input = st.text_area("Type a customer complaint here:", height=100,
+                               placeholder="e.g. my payment failed and amount got deducted but no refund")
+
+    if st.button("Classify Complaint", type="primary"):
+        if user_input.strip():
+            cats, urgency, churn = classify_live(user_input)
+            st.success(f"**Detected Category:** {', '.join(cats)}")
+            col_a, col_b = st.columns(2)
+            col_a.metric("Urgency Score", urgency)
+            col_b.metric("Churn Risk", "Yes ⚠️" if churn else "No")
+        else:
+            st.warning("Please type a complaint first.")
+
 st.divider()
-st.caption("Classification powered by a pretrained zero-shot AI model (no training data required).")
+st.caption("classification powered by a pretrained zero-shot AI model (no training data required).")
