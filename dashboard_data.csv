@@ -1,0 +1,295 @@
+reviewer,text,rating,date,predicted_category,bug_subcategory,transaction_subcategory,ui_subcategory,suggestion_type,urgency_score,churn_risk
+Awais Saeed,very bad service,1,07/08/2026 9:21,Other,,,,,0,False
+Anonymous Avanger,"The app experience is pathetic. It crashes on android 10, 11 and even on 12 and 13 on some Xiaomi devices when scan cnic during registration. Furthermore , in case of 2 bank accounts there's an option to unlink any of the accounts. But if we unlink the one then it throws some weird exception. fix it asap",1,07/08/2026 5:40,Bug,Registration/CNIC Scan Crash,,,,0,False
+Muhammad Abdul Wadood Afzal,"pathetic user experience, outrage any time",1,06/08/2026 21:07,UI/Design,,,Unspecified/General Complaint,,0,False
+Muneeb Crickets,kia chutyapa hai yaar Tum logon ka call banking mai 2 din sa call kar raha hoon debit card activation karwani hai call hi nahi lag kar de rahi jab call milao call pr numainda busy hai tumhara ajeeb pagal ka bachon kia tamasha lagaya hoa hai yaar Tum logon ne,1,06/08/2026 20:18,Transaction,,Card Management,,,0,False
+Innocent Jingoist,"pathatic service. I have been unable to log into my mobile app since Nov, 2025. multiple complaints lodged but no response. worst banking service of Pakistan.",1,06/08/2026 19:33,Login,,,,,0,False
+King Faique,very bad app experience,1,06/08/2026 19:18,UI/Design,,,Unspecified/General Complaint,,0,False
+HT GAMING ZONE,"poor working, not trusted application",1,06/08/2026 17:54,Bug,Unspecified,,,,0,False
+Umair Aftab,This app is not a good working,1,06/08/2026 12:18,Bug,Unspecified,,,,0,False
+DARK LORD,the app has an issue now after last update the side menu overlay does not go away take half the screen rendering the app useless kindly fix it this issue was not before the issue is still unresolved,1,06/08/2026 7:41,Bug,Menu/Navigation Stuck (UI Freeze),,,,0,False
+Abubakar Ahmad,In theme settings there is only light option can't change it to any thing else. yet the audacity to mention premium UI themes and bug fixes in changelog update. pathetic.,1,06/08/2026 6:12,UI/Design,,,Add Theme Options (Dark Mode),,0,False
+Shahkar Ahmad,the layout is trash. low quality design,1,06/08/2026 0:03,UI/Design,,,Unspecified/General Complaint,,0,False
+HAMZA KHAN,ye Konsa error hai Jo hatt hi nhi Raha mere main page 3 dot ke share option dikh Rahe hai air mere ko koi transaction bhi Karne nhi de Rahe fix it quickly,1,05/08/2026 21:38,Suggestion,,,,MISCLASSIFIED - Actually Bug,0,False
+Ahmed Zahid,worst online banking experience worst n worst ever,1,05/08/2026 17:09,Transaction,,Unspecified,,,0,False
+hafiz mani,"One of the worst application. App doesn't open, it's take too much time for loading and doesn't open.",1,05/08/2026 16:29,Bug,App Not Opening/Loading,,,,0,False
+Asim Farooq,👎,1,05/08/2026 15:26,Suggestion,,,,MISCLASSIFIED - Not a suggestion,0,False
+Umer Tem,The application works so slow and has horrible UI and modern banking features.,1,05/08/2026 12:18,UI/Design,,,Modernize UI/Design,,0,False
+Muhammad Iqbal Manzoor,Worst Banking App.,1,05/08/2026 7:49,UI/Design,,,Unspecified/General Complaint,,0,False
+Hafiz Inam,"they are nice at opening an account only, completely different behaviour when you need help and support after opening account. I am away from branch, bad wheather, I had to call them multiple times, submitted request online multiple times but no action, online helping says it will be updated without branch visit, calling branch says we cannot update without Biometric. Strange behaviour, This behaviour affected my business activities badly.",1,05/08/2026 7:40,Support,,,,,0,False
+Rana Anees,bad experience,1,05/08/2026 7:32,Other,,,,,0,False
+Arif Khan,l am trying from last 3 days but app is not working. most of the time app is not working.,1,05/08/2026 6:53,Bug,Unspecified,,,,1,False
+Zohaib Sajjad,"In my experience, this app has been disappointing. Although Meezan Bank is well-known, whenever I've needed the app the most, it has let me down. Even today, I'm trying to open it, but it just won't load. It seems the servers are so busy that the app isn't functioning properly. I hope the bank fixes this issue as soon as possible.",1,04/08/2026 18:02,Other,,,,,0,False
+Feroz Ahmad,"this happened yet once again: I legit remember to have selected the desired account, but when the money was send it was someone else's account. you really need to fix it. the helpline is not working",1,04/08/2026 14:57,Transaction,,IBFT,,,0,False
+Umer Mughal,please update the app?? there is some issue with the front page display. i cant see the options due to another page already open which makes it unable to see the account balance and transfer the money. plz fix it.,1,04/08/2026 13:46,Bug,Menu/Navigation Stuck (UI Freeze),,,,0,False
+Ibrar Malik,"before this , it was good but now i am facing some error problems.",1,04/08/2026 11:01,Other,,,,,0,False
+Faizan Butt,one of the fraudest bank ever. They deduct charges without your knowledge,1,04/08/2026 10:03,Other,,,,,0,False
+Saeed Khan,zero service branch service is zero application is very good because every time Platinum numbers come and normal person waiting 20 to 25 minutes and department is slow,1,04/08/2026 8:59,Positive,,,,,0,False
+muzammil khan,slow,1,04/08/2026 8:50,Other,,,,,0,False
+Mzee Ali,app not opening from few days plz solve this issue.,1,04/08/2026 2:34,Bug,App Not Opening/Loading,,,,1,False
+Bilal Ahmad,hello every one who want to create account with Meezan bank . don't make . it is very bosh bank the annual fee is too high. transaction fee sms fee and so on every year the cut there fee more then RS 10000. don't make account with this bank it is totally set for there scam . very very bad bank. i shared my issue which i faced with this bank . thanks,1,03/08/2026 23:05,Other,,,,,0,False
+Mahmood Malik,Worst app ever made literally even 150 rs transaction to jazz account is failing. amount is deducted from account but didn't reached the other end old application was so much easy and reliable but this app is piece of garbage literally disappointed,1,03/08/2026 20:20,Transaction,,Wallet/Bill Transfer,,,0,False
+Haroon Idrees,"Unable to register for Internet Banking because it requires a debit card, which I don't have as an overseas RDA customer. The mobile app works, but I can't transfer funds from my USD RDA account to my PKR account. PKR transfers show ""Insufficient Balance,"" and entering USD keeps the Next button disabled. Customer support says this isn't supported in the app. Please provide a solution for overseas RDA users by enabling usd transfer in app and allowing Internet Banking without debit card.",1,03/08/2026 19:05,Support,,,,,0,False
+The Ranausman,poor app,1,03/08/2026 17:44,UI/Design,,,Unspecified/General Complaint,,0,False
+Muhammad Awais,"Hello, I opened a Meezan Mobile Account 3 months ago with It is still showing ""Biometric Not Verified"" even after visiting the branch.",1,03/08/2026 17:40,Login,,,,,1,False
+Taha Haroon,OTP Code nh aAraha,1,03/08/2026 17:00,Suggestion,,,,MISCLASSIFIED - Actually Login Bug,0,False
+Sohaib Aslam,Very bad. There is no option to mark the thumb impression.,1,03/08/2026 15:17,Other,,,,,0,False
+Official Engineer Faizan,poor app not working properly,1,03/08/2026 15:14,Bug,Unspecified,,,,0,False
+Waqar Abdullah,I can't transfer money from meezan app,1,03/08/2026 14:58,Transaction,,Unspecified,,,0,False
+HASSAN RAZA,App n is not showing the Money transfers app issues sold it now,1,03/08/2026 14:32,Bug,Unspecified,,,,0,False
+Agha Fakhar,"currently I'm stuck side menu issue , unable to close , pls fix as as possible, mobile vivo y20s , Android version 10",1,03/08/2026 11:52,UI/Design,,,Side Menu Stuck (DEVICE-SPECIFIC),,0,False
+Syed Ziyad Bin Hasan,not working properly. face issue in funds transfer,1,03/08/2026 11:00,Transaction,,Unspecified,,,0,False
+Hamza Irfan,"Dear Meezan Bank Support Team, I have been emailing continuously for the last 10 days, but I have not received a single response. This is very disappointing and reflects poor customer support. I am facing a UI issue in the Meezan Bank app where the menu opens automatically and cannot be closed, making it impossible to send money or use the app. I have already reinstalled the app and cleared its cache and data multiple times, but the issue remains unresolved. Kindly respond me back",1,03/08/2026 7:08,Support,,,,,1,False
+Muhammad Hamza,worse app in the world please reply to my emails on your complaint email.,1,03/08/2026 5:04,Support,,,,,0,False
+Variant,too large and barely works,1,03/08/2026 4:08,UI/Design,,,Unspecified/General Complaint,,0,False
+Hassan Hussain,very bad helping,1,02/08/2026 14:16,Other,,,,,0,False
+Abdullah Khan,Not even deserve a single start,1,02/08/2026 12:06,Other,,,,,0,False
+Saud Baig,"After logging in, the left navigation panel remains permanently open and covers almost half of the screen, making the app unusable. I have already tried: Clearing the app cache. Updating Android System WebView (as advised). Restarting the phone. Unfortunately, nothing has fixed the issue. Update: I emailed your support team, provided my account details, device information, and screenshots exactly as requested. Since then, I have not received any further response This is very disappointed",1,02/08/2026 10:57,Bug,Menu/Navigation Stuck (UI Freeze),,,,0,False
+Muhammad Zaid,Nice bank but very bad Mobil app experience. I facing OTP entering issues since last 4 months. I reinstall the app. but now OTP not entering correctly. Sir I receiving OTP but I can't enter OTP in given boxes. cursor automatically shifting to pervious box.,1,01/08/2026 20:17,UI/Design,,,MISCLASSIFIED - Actually Login Bug,,1,False
+Shamas Ud Din,This app has been running very badly for a few days,1,01/08/2026 17:27,Bug,Unspecified,,,,1,False
+Haris Waheed,still poor. it was good but not now,1,01/08/2026 16:38,Other,,,,,0,False
+Haris Ali,cannot scan fingerprint on oppo,1,01/08/2026 16:07,Transaction,,Login (Misclassified),,,0,False
+Anees Amjad,apps accessibility error. I cannot login on Google pixel phone,1,01/08/2026 15:21,Bug,Accessibility-related Login Block,,,,0,False
+matador 12345678,frequent updates,1,01/08/2026 11:52,Suggestion,,,,Reduce Update Frequency,0,False
+Store Bocs,"Hello Meezan Bank Team, I would like to report an issue with the Meezan Bank app. Whenever I try to transfer money, selecting a beneficiary does not work properly. Sometimes, when I tap on one beneficiary, the app selects the one above or below instead. This is a serious issue because, in a hurry, it can result in money being sent to the wrong person. Kindly investigate and fix this issue as soon as possible. Thank you for your attention and support.",1,01/08/2026 7:32,Support,,,,,0,False
+Muhammad Hilal,if a person doesnt have space left in their phone so let them use the application(old version) rather than being rigid and not letting use app.,1,01/08/2026 2:12,Suggestion,,,,Support Lite/Old Version for Low Storage,0,False
+Asim Mushtaq,day by day decreasing it's performance,1,31/07/2026 18:51,Other,,,,,0,False
+M Jaish,"This is a third class app 😡I have to login again every time I want to do something. Re-enter password Re-enter password Apart from that, go to the debit card section, their system was not working, the system was broken, they don't know what system I did.",1,31/07/2026 14:54,Login,,,,,0,False
+Muhammad Usama Nasir,I used many banking apps but I think the cheap one is this Meezan mobile app ...first of all I faced email changing issues and then card management.. this service is not processing,1,31/07/2026 14:29,Transaction,,Card Management,,,0,False
+hamza ilyas,"*⚠️ Meezan Bank App - My Personal Experience ⚠️* Friends, if you want to save your money and stress, please read this post. I’ve been using the last 8 years Meezan Bank app for the past few weeks and the experience has been really bad: ""The app crashes every 2 minutes. You can't get anything done."" - ""Customer service is useless. You just talk to a bot all day.""For every issue the reply is always 'we're looking into it'. When will you look into it? A big scammer. Please save your time and money.",1,31/07/2026 13:58,Support,,,,,2,True
+Giyu_ Muk,Bht hi Ghatia Service hai..2 mahine hony waly Hain mine visa card ky lia apply Kia tha Jo k muje abhi tk Nahi Mila JB bhi call kro ky Kia hua mujhe abhi tk card received Nahi hua hai Tu bolty hain hum mazrat chahty Hain ap KO jald hi mil jay ga .... ya Tu fala fala din ky bad mil jay ga lkn abhi tk Nahi Mila ... bilkul Ghatia Service hai inki,1,31/07/2026 12:21,Other,,,,,0,False
+Faisal Azhar,"The update is really disappointing. Because of the side panel, it's almost impossible to make any transactions. It would have been better if you hadn't released this update at all. Now, whenever someone wants to make a transaction, they first have to search for the Bank ATM option before they can proceed.",1,31/07/2026 10:46,UI/Design,,,Side Menu Stuck (UI Freeze),,0,False
+M Ismail Karnii,not a good app,1,31/07/2026 5:08,UI/Design,,,Unspecified/General Complaint,,0,False
+Shakeel Malik,bhot fazool Bank hai pesy jmha krwany ho to Tax pesy niklwany ho to phir Tax Kisi ko 1000rpy send krna hai to Tax lety Hain baqi Kisi bank main aysa nai hota ......... main ne to account Khali kr Lia ha ab sirf bolak krwana hai aap b Sahi trah kaam nai krti,1,31/07/2026 3:03,Transaction,,Fees/Charges,,,0,False
+Sairaakmal Akmal,alots of problem I m faced.... many time didn't accept my password... login problem transaction problem... I m just tired of this app....,1,31/07/2026 2:05,Login,,,,,0,False
+Ramzan Ali,میری رقم ابھی تک نہیں ایی,1,30/07/2026 17:19,Other,,,,,0,False
+Lowa-International,"I had high expectations when I opened my account with Meezan Bank, but my experience has been consistently disappointing. Almost every time I need to make a transaction, I end up facing technical issues or delays. Banking services should be reliable, especially when customers depend on them for important payments.",1,30/07/2026 16:57,Transaction,,Unspecified,,,0,False
+Muhammad Umar Yaqoob,"The app is not working on samsung A57, I visited branch and they told me that the similar issues are also reported by other A57 users as well. Please resolve the issue on priority.",1,30/07/2026 15:15,Other,,,,,0,False
+Syed Numan Ali,bad bank bad app,1,30/07/2026 15:09,UI/Design,,,Unspecified/General Complaint,,0,False
+Malik's Malik's,extra charges,1,30/07/2026 14:36,Transaction,,Fees/Charges,,,0,False
+Waqas Malik1180,kaml app,1,30/07/2026 13:45,Suggestion,,,,MISCLASSIFIED - Actually Positive,0,False
+Noor Fatima,"I've been using this app for 2 years and it was doing fine but now it has suddenly stop workin . it's not getting open, whenever I open it says ""application error"""" the connection to the server was unsuccessful"".So I don't know what to do now",2,05/08/2026 10:32,Bug,App Not Opening/Loading,,,,1,False
+Abdullah Hussain,I am having some issues with it there's a pop-up blocking the application and I can't close it ... it's frustrating and can't use the application... please fix it.... I would like to send you the images but there isn't any options here for it... although I have sent you an email with the images hope you will take action soon,2,05/08/2026 9:57,Bug,Menu/Navigation Stuck (UI Freeze),,,,0,False
+Naseem Shah,kindly set the user interface of the application it looks more like a wallet not a Bank make it look like a bank,2,04/08/2026 6:52,UI/Design,,,Redesign to Look More Bank-like,,0,False
+Qazi Arshad Kamal,"still face an issue like app glitch,side bar is opened but there is no option to go back ,like holding this page as stuck",2,03/08/2026 8:35,Bug,Menu/Navigation Stuck (UI Freeze),,,,0,False
+Irfan Haider,doesn't let me login,2,03/08/2026 8:33,Login,,,,,0,False
+Zafar Iqbal,"Meezan offers below average service, utility bills paid through app are often automatically reversed and subscriber know the same when (s)he receives bill of next month with arrears alongwith surcharge. Salaries of government servants is transferred to their accounts with delay of days, it is 2nd August, All my colleagues having account with other banks have received their salary 4 days ago but I am still waiting for transfer of the same from Meezan",2,02/08/2026 9:41,Other,,,,,1,False
+Muhammad Zubair Shaukat,I have updated app many times but still my app is stuck and showing an alert to update app.. kindly resolve this issue because I have to do transactions. thankyou,2,30/07/2026 20:45,Bug,Force-Update Loop,,,,0,False
+Muhammad Tazeem,otp issues,3,06/08/2026 21:08,Other,,,,,0,False
+cityway 1,In updated version no properly log off option while clicking on top right power button directly it switch off app with out asking anything else.,3,06/08/2026 8:12,UI/Design,,,Missing Proper Logout Option,,0,False
+rabia riaz,application doesn't work properly,3,06/08/2026 7:42,Bug,Unspecified,,,,0,False
+Rabia Hafeez,good very Good,3,06/08/2026 4:29,Positive,,,,,0,False
+Muhammad Huzaifa,best Islamic bank in my choice Alhumdulliah ✨❣️,3,04/08/2026 14:53,Positive,,,,,0,False
+Amina Naseer,this aap is very easy to use but recently I'm facing it's updated issues,3,04/08/2026 7:11,Bug,Unspecified,,,,0,False
+Shireen Naz,good,3,04/08/2026 4:33,Positive,,,,,0,False
+Ahsan Rao,good,3,02/08/2026 9:46,Positive,,,,,0,False
+saif,all good but face id login not working on android,3,01/08/2026 20:55,Login,,,,,0,False
+Saeed Khani,comfortable,3,01/08/2026 9:09,Positive,,,,,0,False
+Rana Moeed,Nice,3,01/08/2026 7:19,Positive,,,,,0,False
+Mumtaz Aman,good,3,31/07/2026 13:03,Positive,,,,,0,False
+Muhammad Nadeem,new update is not smart there is bugs found. once you have download completed 100% but app required again n again upsate,3,30/07/2026 21:15,Bug,Force-Update Loop,,,,0,False
+Arshad Javed,very appreciate app,4,06/08/2026 17:09,Positive,,,,,0,False
+Nayyer Abbas,good,4,06/08/2026 8:57,Positive,,,,,0,False
+Ava Avec,good app,4,05/08/2026 16:56,Positive,,,,,0,False
+Nadeem Akhtar,Over All good experience fast and user friendly,4,05/08/2026 6:04,Positive,,,,,0,False
+Abdur Rehman,"soo wonderfull experience with thiss app,,, I open my own bank account at homee without going to any bank...thiiss gives u more power and freedom to spend money,,whenever u what!! i really like it",4,05/08/2026 5:57,Positive,,,,,0,False
+Muhammad Javed,very good 👍,4,05/08/2026 0:08,Positive,,,,,0,False
+Rizwanmughal Rizwanmughal,Good,4,04/08/2026 12:12,Positive,,,,,0,False
+Bakht Baidar,"I m using this app from 2 years its quick and Excellent, but from last two day as I open the app , profile, my Account, qibla, terms and condition display on the center. How I remove it . thanks",4,04/08/2026 9:17,UI/Design,,,UI Element Misalignment,,1,False
+Sumit Kumar,good 👍,4,03/08/2026 9:48,Positive,,,,,0,False
+Anees Ahmed,setting profile etc at bottom of app page are on left side of app. can't make payments due to this please fix it,4,03/08/2026 9:15,Transaction,,UI-caused Payment Issue,,,0,False
+Nafees Malik,"It used to be a seamless and wonderful app. Unfortunately, The connectivity of this app is continuously bugging now. Logging in is an issue every now and again. Kindly improve....",4,02/08/2026 10:12,Bug,Connectivity/Login Bug,,,,0,False
+rana ahsan,good,4,02/08/2026 8:16,Positive,,,,,0,False
+Awais1166 Ali,good 👍,4,31/07/2026 16:46,Positive,,,,,0,False
+Masad Khan,very helpful app,4,31/07/2026 12:34,Positive,,,,,0,False
+Mr Zohaib Ali Magsi,Great service Mezan Bank,4,31/07/2026 7:39,Positive,,,,,0,False
+Sohaib Ur Rehman Khan,please enabled dark theme,5,07/08/2026 8:53,Suggestion,,,,Add Dark Mode,0,False
+Mian Dawood Saeed Chawan,"I used the meezan Mobiles app. This use is a friendly, secure app. This is a very grateful app",5,07/08/2026 8:00,Positive,,,,,0,False
+Umar Farooq,nice,5,07/08/2026 7:55,Positive,,,,,0,False
+Imtiaz lodhi,"Excellent Service I had a great experience with Meezan Bank. The staff is professional, friendly, and always ready to help. Transactions are fast, the mobile banking app is easy to use, and the overall service is reliable. Highly recommended for anyone looking for a trustworthy Islamic bank.",5,07/08/2026 7:47,Positive,,,,,0,False
+Ghulam Rasool,good 👍,5,07/08/2026 7:18,Positive,,,,,0,False
+Ishaq Shah,"Thank you Meezan, For this quick service. Please restore the screenshot feature. Thank you.",5,07/08/2026 7:06,Suggestion,,,,Restore Screenshot Feature,0,False
+Kingkhn,good👍👍👍👍👍👍👍👍👍👍,5,07/08/2026 4:57,Positive,,,,,0,False
+Ijaz Ijaz sumra,Nice nice,5,07/08/2026 1:26,Positive,,,,,0,False
+Hamid Basit,very good,5,06/08/2026 23:31,Positive,,,,,0,False
+Hadnain Khan302,bahut acchi app hai,5,06/08/2026 20:48,Other,,,,,0,False
+omar butt,excellent,5,06/08/2026 18:20,Positive,,,,,0,False
+Faisal Riaz,very good,5,06/08/2026 17:25,Positive,,,,,0,False
+Moiz Asif,very good,5,06/08/2026 16:43,Positive,,,,,0,False
+Muhammad Zuhaib,very Good,5,06/08/2026 14:51,Positive,,,,,0,False
+aleem akhter,it's amazing meezan bank application,5,06/08/2026 14:47,Suggestion,,,,MISCLASSIFIED - Actually Positive,0,False
+Rana Ayoub,nice aapp,5,06/08/2026 13:37,Positive,,,,,0,False
+Hammad Ali,App Server Slow but Transacition is Good.,5,06/08/2026 11:16,UI/Design,,,Unspecified/General Complaint,,0,False
+Hira Naeem,Excellent 👍,5,06/08/2026 10:19,Positive,,,,,0,False
+Saad Ahmed,v good Service,5,06/08/2026 8:58,Positive,,,,,0,False
+Hussnain Muavia,good way of money saving or transfer ❤️,5,06/08/2026 8:02,Positive,,,,,0,False
+Faisal Ahmed,nice app,5,06/08/2026 6:57,Positive,,,,,0,False
+HASEEB ARIF,"Alhmdullilah, Having great experience and very quick transfer through Transections.",5,06/08/2026 6:31,Positive,,,,,0,False
+Warda Qadeer,👍,5,06/08/2026 5:56,Suggestion,,,,MISCLASSIFIED - Actually Positive,0,False
+Afzan Rajpoot,good,5,06/08/2026 5:03,Positive,,,,,0,False
+Abdullah Khan,finger print not work,5,06/08/2026 5:00,Login,,,,,0,False
+Muhammad Altafansari,awesome 👍,5,06/08/2026 2:47,Positive,,,,,0,False
+Arshad Ali,good,5,06/08/2026 2:45,Positive,,,,,0,False
+ᕼᗴᑌᒪᗴǤᗝ,app UI ko improve karna chahiye. operational smoothness. and most important jo transaction receipt hai us ko better karna hai jab wo save karte hain to full screenshot aa jata hai jab ke sirf receipt content hona chahiye. one more thing amount send karte wqt TPin jese extra security features must hona chahiye.,5,06/08/2026 2:30,Suggestion,,,,Improve Receipt Format/UI,0,False
+Muhammad Daniyal,I like it,5,06/08/2026 0:20,Positive,,,,,0,False
+Z Zu2621,good and easy to use,5,05/08/2026 20:40,Positive,,,,,0,False
+Ayaan barlas,"In the Meezan App, please add a feature where ONLY 1 fingerprint can be used to log in. Right now, if my brother adds his fingerprint to my phone, he can also open and manage my Meezan Bank account. This is a big security risk. Request: Please update the app so that only 1 registered fingerprint can access the Meezan App. Even if 5 fingerprints are added to the phone, only the 1 fingerprint work. overall, The app is Perfect working and my verification problem solved after new update come.",5,05/08/2026 19:38,Suggestion,,,,Single-Fingerprint Restriction (Security),0,False
+Kamran Mughal,good 👍,5,05/08/2026 18:09,Positive,,,,,0,False
+Fani Danish,good app for meezan Bank,5,05/08/2026 17:58,Positive,,,,,0,False
+Ishaq Khan,excellent experience with mezzan,5,05/08/2026 17:34,Positive,,,,,0,False
+Munawar Abbas Haidary,Good Work,5,05/08/2026 17:17,Positive,,,,,0,False
+Rida Zafar,good experience,5,05/08/2026 16:43,Positive,,,,,0,False
+Maqsood Rehmat,good,5,05/08/2026 16:41,Positive,,,,,0,False
+Usman SAAB,good bank app,5,05/08/2026 16:24,Positive,,,,,0,False
+Adil Khan,good 💯,5,05/08/2026 15:48,Positive,,,,,0,False
+Mr. Aries,wonderful,5,05/08/2026 15:38,Positive,,,,,0,False
+Usama Ayoub,Ooosome,5,05/08/2026 15:11,Positive,,,,,0,False
+Rabea,good,5,05/08/2026 15:09,Positive,,,,,0,False
+Ali Ali,Well,5,05/08/2026 14:56,Positive,,,,,0,False
+Hasnan Khokhar,all's Bank okay but Meezan bank 🏦 in the best bank of Pakistan,5,05/08/2026 14:28,Suggestion,,,,MISCLASSIFIED - Actually Positive,0,False
+Shabbir Jaan,Nice Bank,5,05/08/2026 14:09,Positive,,,,,0,False
+muhammad alvi,it's a good user interface but I think it needs to improve to make it more modern and eye friendly.,5,05/08/2026 14:01,UI/Design,,,Modernize UI/Design,,0,False
+Ikram Khan,👍,5,05/08/2026 13:11,Suggestion,,,,MISCLASSIFIED - Actually Positive,0,False
+Chaudhury Akbar Ali,very good,5,05/08/2026 12:54,Positive,,,,,0,False
+M Tayyab,good 👍,5,05/08/2026 11:28,Positive,,,,,0,False
+muhammad arif,Best banking services i have ever seen in from any Pakistani BANK. I even prefer to all my family member to go and open AC in MEEZAN bank.,5,05/08/2026 11:28,Positive,,,,,0,False
+MAJID DOGAR,good,5,05/08/2026 11:09,Positive,,,,,0,False
+Lala asghar,Good service,5,05/08/2026 9:20,Positive,,,,,0,False
+Muhammad Sajid,A good bank,5,05/08/2026 9:17,Positive,,,,,0,False
+Dd Dd,wow,5,05/08/2026 7:47,Suggestion,,,,MISCLASSIFIED - Actually Positive,0,False
+abdullah zahid,A very good service.,5,05/08/2026 7:41,Positive,,,,,0,False
+Malik Sam,good 😊,5,05/08/2026 6:38,Positive,,,,,0,False
+Moeen Malik,very good,5,05/08/2026 4:09,Positive,,,,,0,False
+Mamoona Jahangir,good,5,05/08/2026 3:12,Positive,,,,,0,False
+Zohaib Ahmed,Good,5,05/08/2026 2:47,Positive,,,,,0,False
+Huzaifa Saeed M,best hai Bhai sab use Karou,5,04/08/2026 22:00,Suggestion,,,,MISCLASSIFIED - Actually Positive,0,False
+Aziz Saleme,good 👍,5,04/08/2026 21:44,Positive,,,,,0,False
+NIAMAT ULLAH,good service,5,04/08/2026 20:26,Positive,,,,,0,False
+Muhammad Umair,The registration process is very smooth and and highly encouraged Thanks Meezan,5,04/08/2026 19:32,Positive,,,,,0,False
+Sajjad Ahmad,Very nice,5,04/08/2026 18:51,Positive,,,,,0,False
+Musa Ahmed,👍,5,04/08/2026 17:35,Suggestion,,,,MISCLASSIFIED - Actually Positive,0,False
+Bhai Jan,Good 😊 Bank,5,04/08/2026 13:46,Positive,,,,,0,False
+M i,nice 👍,5,04/08/2026 12:49,Positive,,,,,0,False
+Abdul Samad,ok,5,04/08/2026 12:27,Positive,,,,,0,False
+malik shahzaib,nice nice,5,04/08/2026 11:22,Positive,,,,,0,False
+Afshan Kamran,useful very easy to use meezan app thank you so much,5,04/08/2026 9:08,Positive,,,,,0,False
+faryal butt,good job 👍,5,04/08/2026 8:25,Positive,,,,,0,False
+Adil Niazi,all good,5,04/08/2026 8:14,Positive,,,,,0,False
+Muhammad Asif,kmal bank hy,5,04/08/2026 8:08,Suggestion,,,,MISCLASSIFIED - Actually Positive,0,False
+Richard David,good app,5,04/08/2026 7:45,Positive,,,,,0,False
+Faiz Ul Hassan Sarfaraz,Great app,5,04/08/2026 6:08,Positive,,,,,0,False
+Muhammad Ismail,very Good Apps Banking 👍,5,04/08/2026 6:02,Positive,,,,,0,False
+Zakaullah Khan,meezan banking app is very good I'm using since long time.,5,04/08/2026 2:33,Positive,,,,,0,False
+Ameer Hamza Umrani,very good staf behavior very good banking system good app service,5,03/08/2026 19:42,Positive,,,,,0,False
+Sham Malik,best,5,03/08/2026 19:37,Positive,,,,,0,False
+Imran Mani,Its good working sometimes issues but good workig my life make so easy trasfer mony one city to other,5,03/08/2026 17:18,Positive,,,,,0,False
+azhar awan,loan option can be in this app,5,03/08/2026 17:15,Suggestion,,,,Add Loan Feature,0,False
+Ezan Rehan,bhetreen quality,5,03/08/2026 17:14,Positive,,,,,0,False
+Mannatkhan Khan,Good,5,03/08/2026 17:11,Positive,,,,,0,False
+Iffy ADA 231,best meezan bank app forever,5,03/08/2026 17:05,Positive,,,,,0,False
+Feroza BiBi,very good 👍,5,03/08/2026 16:57,Positive,,,,,0,False
+Shahnawaz Jamali,Excellent app mezan Bank No 1 Pakistan,5,03/08/2026 16:51,Positive,,,,,0,False
+Muhammad Talha,Highly Recommended,5,03/08/2026 16:31,Positive,,,,,0,False
+Maham Nadeem,good services,5,03/08/2026 16:01,Positive,,,,,0,False
+shafqat ogahi,best bank for account holder,5,03/08/2026 15:48,Positive,,,,,0,False
+Zahir Marri,The BESSSST App I have ever used!!! but unfortunately the packages are late to update. but over all The Meezan bank is best!!!,5,03/08/2026 15:28,Bug,Unspecified,,,,0,False
+Raza khan Raza khan,nice,5,03/08/2026 15:25,Positive,,,,,0,False
+Saleem Jan,good 👍👍👍👍👍,5,03/08/2026 14:47,Positive,,,,,0,False
+salma ismail,when update option comes my app closes bad experience,5,03/08/2026 14:07,UI/Design,,,MISCLASSIFIED - Actually Bug,,0,False
+Muhammad Yasin,good,5,03/08/2026 13:09,Positive,,,,,0,False
+Qasim Akbar,good working app,5,03/08/2026 12:46,Positive,,,,,0,False
+Muhammad Arshad,nice,5,03/08/2026 12:41,Positive,,,,,0,False
+Ali Khan,Good Work,5,03/08/2026 11:12,Positive,,,,,0,False
+Qasim Khan,good Bank,5,03/08/2026 10:41,Positive,,,,,0,False
+Hafsa Sajjad,Good,5,03/08/2026 9:42,Positive,,,,,0,False
+Muhammad Owais,v good 💯 😊 banking system,5,03/08/2026 8:42,Positive,,,,,0,False
+Abdul Wahab,very fast,5,03/08/2026 8:34,Suggestion,,,,MISCLASSIFIED - Actually Positive,0,False
+ArMaN rAnA,excellent,5,03/08/2026 8:28,Positive,,,,,0,False
+AHMAD MAYO,I love his app ❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️,5,03/08/2026 6:13,Positive,,,,,0,False
+Sattar shahani,good 👍 app download free,5,03/08/2026 5:25,Positive,,,,,0,False
+Asif Ali Goldmedalist,"Pakistan,s number one Bank is Mezan..Its services are very fast and pure transactions..I used all banks but I found the best Mezan..Professor Asif Ali Goldmedalist ,Islamabad.",5,03/08/2026 5:00,Positive,,,,,0,False
+falcon netways,Excellent service,5,02/08/2026 23:05,Positive,,,,,0,False
+Nasir Arain,very nice aap,5,02/08/2026 19:10,Positive,,,,,0,False
+Nouman Sheikh,good,5,02/08/2026 18:58,Positive,,,,,0,False
+Asrar Ahmed,beautiful ❤️,5,02/08/2026 17:45,Positive,,,,,0,False
+Mohsin Ali,very easy to use and fastest way for transections,5,02/08/2026 17:31,Positive,,,,,0,False
+Umar Ismail,excellent,5,02/08/2026 15:51,Positive,,,,,0,False
+Zakir Hussain,Good service Fast Reply,5,02/08/2026 14:56,Positive,,,,,0,False
+M Jameel,good,5,02/08/2026 14:44,Positive,,,,,0,False
+Abdullah Bashir,nice app,5,02/08/2026 10:31,Positive,,,,,0,False
+awais rizvi,godd,5,02/08/2026 9:53,Other,,,,,0,False
+Baqir Hussain,good,5,02/08/2026 8:59,Positive,,,,,0,False
+Allah Nawaz,fast transaction,5,02/08/2026 5:47,Positive,,,,,0,False
+Khurshid Tanoli,Great 👍🏻,5,02/08/2026 5:16,Positive,,,,,0,False
+Sadiq Amin,good,5,02/08/2026 5:15,Positive,,,,,0,False
+Rehan Ullah,"Amazing app and very easy to use, I love it. 100% recommended",5,02/08/2026 4:33,Positive,,,,,0,False
+Hi Hi,good👍,5,02/08/2026 4:21,Positive,,,,,0,False
+Talha hayat,ok,5,02/08/2026 4:14,Positive,,,,,0,False
+Sultan Ali,Very fast service provide....,5,02/08/2026 2:31,Positive,,,,,0,False
+M Sajjad rehmani,good 👍,5,02/08/2026 0:45,Positive,,,,,0,False
+Ayyan Irfan,بہت اچھی ایپ ہے سینڈ بھی جلدی ہوتے ہیں اور رسیو بھی جلدی ہوتے ہیں,5,01/08/2026 19:53,Other,,,,,0,False
+ALI HASAN,very nice 👍,5,01/08/2026 18:37,Positive,,,,,0,False
+khawas Khan,good jobs,5,01/08/2026 15:54,Positive,,,,,0,False
+Ma No,Excellent working,5,01/08/2026 15:49,Positive,,,,,0,False
+Hamza Khan,not open apps,5,01/08/2026 15:33,Other,,,,,0,False
+Muhammad Shakeel,good,5,01/08/2026 15:19,Positive,,,,,0,False
+sohail jewelery & gift,veery good App 👍,5,01/08/2026 14:38,Positive,,,,,0,False
+Khan,Good App due to Islamic aspect ❣️,5,01/08/2026 13:30,Positive,,,,,0,False
+Abdullah Pk,"I initially faced a UI issue after the latest app update. The left-side menu (☰) was overlapping the screen, making options like Profile, Accounts, and Settings difficult to use. I posted a review on the Play Store, and the Meezan Bank team responded with a solution. After updating Android System WebView and restarting my phone, the issue was resolved. Thank you, Meezan Bank, for your prompt response and support. 5 Stars",5,01/08/2026 11:57,UI/Design,,,Side Menu Stuck (UI Freeze),,0,False
+Mudasir Iqbal,Excellent,5,01/08/2026 11:14,Positive,,,,,0,False
+Kamran Khan,so Nice and help fully app,5,01/08/2026 9:56,Positive,,,,,0,False
+Chbilal Gill,good 👍,5,01/08/2026 9:46,Positive,,,,,0,False
+Rizvi G,very good,5,01/08/2026 8:51,Positive,,,,,0,False
+Zulfiqar Ali,v good bankk,5,01/08/2026 8:01,Positive,,,,,0,False
+Waqar Raza,good experience,5,01/08/2026 7:59,Positive,,,,,0,False
+Muhammad Farooq,good,5,01/08/2026 7:33,Positive,,,,,0,False
+Muhammad Shaikh,Excellent,5,01/08/2026 7:32,Positive,,,,,0,False
+Mehdi,perfect privacy,5,01/08/2026 7:28,Positive,,,,,0,False
+Ali Raza,good 👍😊,5,01/08/2026 7:04,Positive,,,,,0,False
+Amir Ali,very nice,5,01/08/2026 5:57,Positive,,,,,0,False
+S.Safder Shah,I love meezan the best bank service in Pakistan,5,01/08/2026 2:32,Positive,,,,,0,False
+Dj Nomana,good,5,31/07/2026 22:56,Positive,,,,,0,False
+Laibawaseeq waseeq,good,5,31/07/2026 22:46,Positive,,,,,0,False
+Mr.Hassan Raza writer,good,5,31/07/2026 20:14,Positive,,,,,0,False
+Hafeez Ullah,good,5,31/07/2026 19:39,Positive,,,,,0,False
+Sarosh Teja,very fast service,5,31/07/2026 19:11,Positive,,,,,0,False
+Chand Attaullah,👍,5,31/07/2026 19:02,Suggestion,,,,MISCLASSIFIED - Actually Positive,0,False
+Malik Ashfaq,good,5,31/07/2026 18:51,Positive,,,,,0,False
+Azfar Rizwan,"Excellent , comfortable and most user friendly as well as reliable bank and app both",5,31/07/2026 18:35,Positive,,,,,0,False
+Ali Baloch,Meezan Mobile App version is Great service,5,31/07/2026 18:01,Positive,,,,,0,False
+Abdul Waheed,good bank,5,31/07/2026 17:57,Positive,,,,,0,False
+Sadam Hussain,Good 🥰,5,31/07/2026 17:45,Positive,,,,,0,False
+Nazia Saeed,good app for banking,5,31/07/2026 17:15,Positive,,,,,0,False
+Zartab Kawish,amazing,5,31/07/2026 16:31,Positive,,,,,0,False
+khalid khalidkhan,very good bank in Pakistan thanks for everything,5,31/07/2026 16:28,Positive,,,,,0,False
+Ismail Gorraya,nic,5,31/07/2026 15:55,Suggestion,,,,MISCLASSIFIED - Actually Positive,0,False
+Zeeshan Prince,good,5,31/07/2026 15:54,Positive,,,,,0,False
+Ghaffarkhan Khan,best aoo,5,31/07/2026 14:16,Positive,,,,,0,False
+Athisham Abid Athisham Abid,osam,5,31/07/2026 13:56,Other,,,,,0,False
+Riwan Rajput Rizwan Rajput,ok,5,31/07/2026 12:43,Positive,,,,,0,False
+Muhammad Abdul Basit,useful app with quick services! appreciated and satisfied!,5,31/07/2026 12:40,Positive,,,,,0,False
+Hafiz Salman,ok,5,31/07/2026 11:10,Positive,,,,,0,False
+Mohsin Ullah Jan,Good App,5,31/07/2026 8:24,Positive,,,,,0,False
+Anayadehwar Anayadehwar,Excited,5,31/07/2026 7:31,Positive,,,,,0,False
+Wazir Gaming,very nice bank for all people,5,31/07/2026 6:31,Positive,,,,,0,False
+Seharkhan Khan,good,5,31/07/2026 6:05,Positive,,,,,0,False
+wali al saud,very simple and good work,5,31/07/2026 0:45,Positive,,,,,0,False
+Sohail Khan,nice,5,30/07/2026 22:24,Positive,,,,,0,False
+Mehmood ullah Madni,v.good service's,5,30/07/2026 20:52,Positive,,,,,0,False
+Imran Arshad,"Good & friendly user interface. Update in 2023: I have been using for many years, and must say that best app amongst all banking/payment apps in Pakistan. Simple and minimal design and smooth flawless process execution. 2026 update : Still one of the best services with a simple app with good user interface.",5,30/07/2026 20:48,Positive,,,,,1,False
+Ubaid Rehman,very good transaction,5,30/07/2026 18:57,Positive,,,,,0,False
+Muhammad Tahir,very good app,5,30/07/2026 18:32,Positive,,,,,0,False
+rana amir,nice,5,30/07/2026 17:45,Positive,,,,,0,False
+iffi g,ok,5,30/07/2026 16:17,Positive,,,,,0,False
+Kashan Raja,mera dashbord ni khatam ho raha aap main,5,30/07/2026 15:32,Other,,,,,0,False
+Azeem Falaksher,good,5,30/07/2026 14:50,Positive,,,,,0,False
+Sajjad Ali,Very good app I'm Rabdino,5,30/07/2026 14:06,Positive,,,,,0,False
+Alihusnain Alihusnain,good,5,30/07/2026 13:14,Positive,,,,,0,False
+MD Ali3594,excellent,5,30/07/2026 11:41,Positive,,,,,0,False
+Aqeel Ahmad,Very good,5,30/07/2026 11:21,Positive,,,,,0,False
+kausar Kazmi,Great,5,30/07/2026 11:08,Positive,,,,,0,False
+Basheer Baloch,easy to survive with this app,5,30/07/2026 10:55,Positive,,,,,0,False
+Mohammad Hussain,Very Nice,5,30/07/2026 10:09,Positive,,,,,0,False
+Hassan Ge,very good,5,30/07/2026 9:26,Positive,,,,,0,False
+Tanveer,Excellent,5,30/07/2026 9:14,Positive,,,,,0,False
+NAVEED PITAFI,Instant Transfer,5,30/07/2026 8:59,Suggestion,,,,Unclear/Ambiguous,0,False
