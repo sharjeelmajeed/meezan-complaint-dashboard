@@ -159,7 +159,7 @@ with tab7:
     urgency_keywords = ["days", "weeks", "months", "years", "closing my account", "close my account",
                          "considering", "highly disappointed", "extremely", "frustrating"]
     churn_keywords = ["closing my account", "close my account", "switch bank", "leaving"," frustrating experience"]
-    negative_words = ["bad", "disappointed", "worst", "scammer", "useless", "frustrating", "disappointing"]
+    negative_words = ["bad", "disappointed", "worst", "scammer", "useless", "frustrating"]
 
     def classify_live(text):
         text_l = text.lower()
