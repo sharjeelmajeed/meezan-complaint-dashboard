@@ -193,8 +193,8 @@ top_category_series = df[df["predicted_category"] != "Positive"]["predicted_cate
 top_category = top_category_series.index[0] if len(top_category_series) > 0 else "N/A"
 
 side_menu_count = (
-    df["bug_subcategory"].astype(str).str.contains("Side Menu Stuck", na=False).sum()
-    + df["ui_subcategory"].astype(str).str.contains("Side Menu Stuck", na=False).sum()
+    (df["bug_subcategory"].astype(str).str.contains("Menu", na=False) & df["bug_subcategory"].astype(str).str.contains("Stuck", na=False)).sum()
+    + (df["ui_subcategory"].astype(str).str.contains("Menu", na=False) & df["ui_subcategory"].astype(str).str.contains("Stuck", na=False)).sum()
 )
 
 k1, k2, k3, k4, k5, k6 = st.columns(6)
