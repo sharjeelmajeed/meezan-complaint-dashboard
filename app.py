@@ -5,7 +5,7 @@ Meezan Bank App - AI Complaint Analysis Dashboard
 
 import streamlit as st
 import pandas as pd
-import matplotlib.pyplot as plt
+import plotly.express as px
 
 st.set_page_config(page_title="Meezan Bank - AI Complaint Analysis", layout="wide")
 
@@ -18,6 +18,17 @@ def load_data():
     return df
 
 df = load_data()
+
+
+# Chart helper (interactive, replaces matplotlib static images)
+
+def interactive_bar_chart(counts_series, color):
+    chart_df = counts_series.reset_index()
+    chart_df.columns = ["category", "count"]
+    fig = px.bar(chart_df, x="category", y="count", text="count", color_discrete_sequence=[color])
+    fig.update_traces(textposition="outside", hovertemplate="%{x}: %{y} complaints<extra></extra>")
+    fig.update_layout(xaxis_title="", yaxis_title="Number of complaints", showlegend=False, margin=dict(t=10, b=10))
+    st.plotly_chart(fig, use_container_width=True)
 
 
 # Header
@@ -48,11 +59,7 @@ with tab1:
     st.subheader("Complaint Category Breakdown")
     category_counts = df[df["predicted_category"] != "Positive"]["predicted_category"].value_counts()
 
-    fig, ax = plt.subplots(figsize=(8, 4))
-    ax.bar(category_counts.index, category_counts.values, color="#2a78d6")
-    ax.set_ylabel("Number of complaints")
-    plt.xticks(rotation=30, ha="right")
-    st.pyplot(fig)
+    interactive_bar_chart(category_counts, "#2a78d6")
 
     st.caption("Note: This is a prototype AI classification (~75% accuracy). Rare categories have limited training examples.")
 
@@ -63,11 +70,7 @@ with tab2:
 
     if len(bug_df) > 0:
         bug_counts = bug_df["bug_subcategory"].value_counts()
-        fig, ax = plt.subplots(figsize=(8, 4))
-        ax.bar(bug_counts.index, bug_counts.values, color="#c0392b")
-        ax.set_ylabel("Number of complaints")
-        plt.xticks(rotation=25, ha="right")
-        st.pyplot(fig)
+        interactive_bar_chart(bug_counts, "#c0392b")
 
         st.markdown("**🔑 Key Finding:** 'Side Menu Stuck' issue is the most repeated, identifiable bug.")
 
@@ -83,11 +86,7 @@ with tab3:
 
     if len(txn_df) > 0:
         txn_counts = txn_df["transaction_subcategory"].value_counts()
-        fig, ax = plt.subplots(figsize=(8, 4))
-        ax.bar(txn_counts.index, txn_counts.values, color="#e07b39")
-        ax.set_ylabel("Number of complaints")
-        plt.xticks(rotation=25, ha="right")
-        st.pyplot(fig)
+        interactive_bar_chart(txn_counts, "#e07b39")
 
         st.caption("Note: Many customers don't specify the exact payment method (Bill/QR/IBFT/Raast) - these are marked 'Unspecified'.")
 
@@ -103,11 +102,7 @@ with tab4:
 
     if len(ui_df) > 0:
         ui_counts = ui_df["ui_subcategory"].value_counts()
-        fig, ax = plt.subplots(figsize=(9, 4))
-        ax.bar(ui_counts.index, ui_counts.values, color="#8e44ad")
-        ax.set_ylabel("Number of complaints")
-        plt.xticks(rotation=25, ha="right")
-        st.pyplot(fig)
+        interactive_bar_chart(ui_counts, "#8e44ad")
 
         st.markdown("**🔑 Key Finding:** Combined with Bugs tab, 'Side Menu Stuck' was mentioned 8 times total - including one device-specific case (Vivo Y20s, Android 10).")
 
@@ -158,7 +153,7 @@ with tab7:
 
     urgency_keywords = ["days", "weeks", "months", "years", "closing my account", "close my account",
                          "considering", "highly disappointed", "extremely", "frustrating"]
-    churn_keywords = ["closing my account", "close my account", "switch bank", "leaving"," frustrating experience"]
+    churn_keywords = ["closing my account", "close my account", "switch bank", "leaving", " frustrating experience"]
     negative_words = ["bad", "disappointed", "worst", "scammer", "useless", "frustrating"]
 
     def classify_live(text):
