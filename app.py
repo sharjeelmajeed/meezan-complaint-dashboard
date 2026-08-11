@@ -1,25 +1,29 @@
 """
 Meezan Bank App - AI Complaint Analysis Dashboard
 
+
 """
 
 import streamlit as st
 import pandas as pd
 import plotly.express as px
 import plotly.graph_objects as go
+import os
 
 st.set_page_config(page_title="Meezan Bank - AI Complaint Analysis", layout="wide", page_icon="📊")
 
 # ---------------------------------------------------------------
-# Design tokens
+# Design tokens - matching Meezan Bank's actual brand colors
 # ---------------------------------------------------------------
-EMERALD = "#0F6B4C"
-EMERALD_DARK = "#0B4F38"
-GOLD = "#C89B3C"
+GREEN = "#1B6B3A"
+GREEN_DARK = "#124F2A"
+PURPLE = "#4A1550"
+PURPLE_DARK = "#350F3A"
+PURPLE_LIGHT = "#7A3E82"
+GREEN_LIGHT = "#3C8D5A"
 BRICK = "#B5453B"
-TEAL = "#1B4D3E"
 CREAM = "#F6F4EE"
-INK = "#1F2A24"
+INK = "#241A26"
 
 st.markdown(f"""
 <style>
@@ -30,30 +34,32 @@ html, body, [class*="css"] {{
 }}
 
 .dashboard-banner {{
-    background: linear-gradient(90deg, {EMERALD_DARK} 0%, {EMERALD} 100%);
-    padding: 1.3rem 1.8rem;
+    background: linear-gradient(90deg, {PURPLE_DARK} 0%, {GREEN_DARK} 100%);
+    padding: 1.2rem 1.6rem;
     border-radius: 10px;
-    margin-bottom: 1.3rem;
 }}
 .dashboard-banner h1 {{
     color: white;
-    font-size: 1.6rem;
+    font-size: 1.5rem;
     font-weight: 700;
     margin: 0;
 }}
 .dashboard-banner p {{
-    color: #E4F3EC;
-    font-size: 0.92rem;
+    color: #EDE6EE;
+    font-size: 0.9rem;
     margin: 0.3rem 0 0 0;
 }}
 
 .kpi-card {{
     background-color: {CREAM};
     border: 1px solid #E4E0D3;
-    border-left: 4px solid {EMERALD};
+    border-left: 4px solid {GREEN};
     border-radius: 8px;
     padding: 0.8rem 1rem;
     height: 100%;
+}}
+.kpi-card.purple-accent {{
+    border-left: 4px solid {PURPLE};
 }}
 .kpi-label {{
     font-size: 0.78rem;
@@ -66,7 +72,7 @@ html, body, [class*="css"] {{
 .kpi-value {{
     font-size: 1.6rem;
     font-weight: 700;
-    color: {EMERALD_DARK};
+    color: {INK};
     margin: 0.15rem 0 0 0;
 }}
 .kpi-icon {{
@@ -77,25 +83,25 @@ button[data-baseweb="tab"] {{
     font-weight: 600;
 }}
 button[data-baseweb="tab"][aria-selected="true"] {{
-    color: {EMERALD_DARK};
-    border-bottom-color: {GOLD} !important;
+    color: {PURPLE_DARK};
+    border-bottom-color: {GREEN} !important;
 }}
 
 .stButton>button {{
-    background-color: {EMERALD};
+    background-color: {GREEN};
     color: white;
     border: none;
     border-radius: 6px;
     font-weight: 600;
 }}
 .stButton>button:hover {{
-    background-color: {EMERALD_DARK};
+    background-color: {GREEN_DARK};
     color: white;
 }}
 
 .key-finding {{
-    background-color: #FBF1DE;
-    border-left: 4px solid {GOLD};
+    background-color: #F3E9F4;
+    border-left: 4px solid {PURPLE};
     border-radius: 6px;
     padding: 0.7rem 1rem;
     font-size: 0.92rem;
@@ -148,24 +154,31 @@ def interactive_bar_chart(counts_series, color):
     fig.update_layout(xaxis_title="", yaxis_title="Number of complaints", showlegend=False, margin=dict(t=10, b=10))
     st.plotly_chart(fig, use_container_width=True)
 
-def kpi_card(col, icon, label, value):
+def kpi_card(col, icon, label, value, accent=""):
     with col:
         st.markdown(f"""
-        <div class="kpi-card">
+        <div class="kpi-card {accent}">
             <p class="kpi-label"><span class="kpi-icon">{icon}</span> {label}</p>
             <p class="kpi-value">{value}</p>
         </div>
         """, unsafe_allow_html=True)
 
 # ---------------------------------------------------------------
-# Header
+# Header (logo + banner)
 # ---------------------------------------------------------------
-st.markdown("""
-<div class="dashboard-banner">
-    <h1>📊 Meezan Bank App — AI-Powered Complaint Analysis</h1>
-    <p>Prototype dashboard: automatically classifies customer reviews and highlights priority complaints.</p>
-</div>
-""", unsafe_allow_html=True)
+logo_col, title_col = st.columns([1, 7])
+with logo_col:
+    if os.path.exists("meezan-bank-logo.png"):
+        st.image("meezan-bank-logo.png", width=80)
+with title_col:
+    st.markdown("""
+    <div class="dashboard-banner">
+        <h1>Meezan Bank App — AI-Powered Complaint Analysis</h1>
+        <p>Prototype dashboard: automatically classifies customer reviews and highlights priority complaints.</p>
+    </div>
+    """, unsafe_allow_html=True)
+
+st.write("")
 
 # ---------------------------------------------------------------
 # KPI row (computed dynamically from the data - no hardcoded numbers)
@@ -187,9 +200,9 @@ side_menu_count = (
 k1, k2, k3, k4, k5, k6 = st.columns(6)
 kpi_card(k1, "📝", "Total Reviews", total_reviews)
 kpi_card(k2, "⚠️", "Complaint Rate", f"{complaint_rate}%")
-kpi_card(k3, "📉", "Churn Risk", churn_count)
+kpi_card(k3, "📉", "Churn Risk", churn_count, "purple-accent")
 kpi_card(k4, "⭐", "Avg Rating", avg_rating)
-kpi_card(k5, "🏷️", "Top Issue", top_category)
+kpi_card(k5, "🏷️", "Top Issue", top_category, "purple-accent")
 kpi_card(k6, "🔁", "'Side Menu Stuck' Mentions", int(side_menu_count))
 
 st.write("")
@@ -205,7 +218,7 @@ with donut_col:
     })
     fig_donut = go.Figure(data=[go.Pie(
         labels=donut_df["type"], values=donut_df["count"], hole=0.55,
-        marker=dict(colors=[EMERALD, BRICK]),
+        marker=dict(colors=[GREEN, PURPLE]),
         textinfo="label+percent",
     )])
     fig_donut.update_layout(margin=dict(t=10, b=10, l=10, r=10), height=280, showlegend=False)
@@ -232,7 +245,7 @@ tab1, tab2, tab3, tab4, tab5, tab6, tab7, tab8 = st.tabs([
 with tab1:
     st.subheader("Complaint Category Breakdown")
     category_counts = df[df["predicted_category"] != "Positive"]["predicted_category"].value_counts()
-    interactive_bar_chart(category_counts, EMERALD)
+    interactive_bar_chart(category_counts, GREEN)
     st.caption("Note: This is a prototype AI classification (~75% accuracy). Rare categories have limited training examples.")
 
 # ---------------- TAB 2: Bugs ----------------
@@ -242,7 +255,7 @@ with tab2:
 
     if len(bug_df) > 0:
         bug_counts = bug_df["bug_subcategory"].value_counts()
-        interactive_bar_chart(bug_counts, BRICK)
+        interactive_bar_chart(bug_counts, PURPLE)
         st.markdown('<div class="key-finding">🔑 <b>Key Finding:</b> \'Side Menu Stuck\' issue is the most repeated, identifiable bug.</div>', unsafe_allow_html=True)
 
         with st.expander("View raw complaint text"):
@@ -257,7 +270,7 @@ with tab3:
 
     if len(txn_df) > 0:
         txn_counts = txn_df["transaction_subcategory"].value_counts()
-        interactive_bar_chart(txn_counts, GOLD)
+        interactive_bar_chart(txn_counts, GREEN_LIGHT)
         st.caption("Note: Many customers don't specify the exact payment method (Bill/QR/IBFT/Raast) - these are marked 'Unspecified'.")
 
         with st.expander("View raw complaint text"):
@@ -272,7 +285,7 @@ with tab4:
 
     if len(ui_df) > 0:
         ui_counts = ui_df["ui_subcategory"].value_counts()
-        interactive_bar_chart(ui_counts, TEAL)
+        interactive_bar_chart(ui_counts, PURPLE_LIGHT)
         st.markdown('<div class="key-finding">🔑 <b>Key Finding:</b> Combined with Bugs tab, \'Side Menu Stuck\' was mentioned 8 times total - including one device-specific case (Vivo Y20s, Android 10).</div>', unsafe_allow_html=True)
 
         with st.expander("View raw complaint text"):
