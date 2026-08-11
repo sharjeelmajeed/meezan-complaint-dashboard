@@ -1,7 +1,6 @@
 """
 Meezan Bank App - AI Complaint Analysis Dashboard
 
-
 """
 
 import streamlit as st
@@ -25,12 +24,44 @@ BRICK = "#B5453B"
 CREAM = "#F6F4EE"
 INK = "#241A26"
 
+# ---------------------------------------------------------------
+# In-app background theme switcher (sidebar) - no config.toml needed
+# ---------------------------------------------------------------
+BACKGROUND_THEMES = {
+    "Cream (Original)": {"bg": "#F6F4EE", "text": "#241A26"},
+    "Charcoal (Dark)": {"bg": "#1F1B24", "text": "#F0EDE9"},
+    "Taupe-Grey": {"bg": "#D9D2CE", "text": "#241A26"},
+    "Plum-Grey (Dark)": {"bg": "#3A2E3D", "text": "#F5F0F2"},
+}
+
+with st.sidebar:
+    st.markdown("### 🎨 Appearance")
+    theme_choice = st.selectbox("Background theme", list(BACKGROUND_THEMES.keys()), index=0)
+
+chosen_theme = BACKGROUND_THEMES[theme_choice]
+
+# ---------------------------------------------------------------
+# Custom styling
+# ---------------------------------------------------------------
 st.markdown(f"""
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
 
 html, body, [class*="css"] {{
     font-family: 'Inter', sans-serif;
+}}
+
+[data-testid="stAppViewContainer"] {{
+    background-color: {chosen_theme['bg']} !important;
+}}
+[data-testid="stHeader"] {{
+    background-color: {chosen_theme['bg']} !important;
+}}
+[data-testid="stSidebar"] {{
+    background-color: {chosen_theme['bg']} !important;
+}}
+p, span, li, label {{
+    color: {chosen_theme['text']};
 }}
 
 .dashboard-banner {{
