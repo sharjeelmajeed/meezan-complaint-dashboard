@@ -1,5 +1,6 @@
 """
 Meezan Bank App - AI Complaint Analysis Dashboard
+
 """
 
 import streamlit as st
@@ -8,9 +9,9 @@ import matplotlib.pyplot as plt
 
 st.set_page_config(page_title="Meezan Bank - AI Complaint Analysis", layout="wide")
 
-# ---------------------------------------------------------------
+
 # Load data
-# ---------------------------------------------------------------
+
 @st.cache_data
 def load_data():
     df = pd.read_csv("dashboard_data.csv")
@@ -18,15 +19,15 @@ def load_data():
 
 df = load_data()
 
-# ---------------------------------------------------------------
+
 # Header
-# ---------------------------------------------------------------
+
 st.title("📊 Meezan Bank App - AI-Powered Complaint Analysis")
 st.markdown("Prototype dashboard: automatically classifies customer reviews and highlights priority complaints.")
 
-# ---------------------------------------------------------------
+
 # Top metrics
-# ---------------------------------------------------------------
+
 col1, col2, col3, col4 = st.columns(4)
 col1.metric("Total Reviews Analyzed", len(df))
 col2.metric("Complaints (non-Positive)", len(df[df["predicted_category"] != "Positive"]))
@@ -35,11 +36,11 @@ col4.metric("Avg Rating", round(df["rating"].mean(), 2))
 
 st.divider()
 
-# ---------------------------------------------------------------
+
 # Tabs for each section
-# ---------------------------------------------------------------
-tab1, tab2, tab3, tab4, tab5, tab6 = st.tabs([
-    "Overview", "Bugs", "Transactions", "UI/UX", "Feedback", "Priority Complaints"
+
+tab1, tab2, tab3, tab4, tab5, tab6, tab7, tab8 = st.tabs([
+    "Overview", "Bugs", "Transactions", "UI/UX", "Feedback", "Priority Complaints", "Live Checker", "Play Store Monitor"
 ])
 
 # ---------------- TAB 1: Overview ----------------
@@ -140,5 +141,78 @@ with tab6:
     else:
         st.info("No high-priority complaints found in this dataset.")
 
+# ---------------- TAB 7: Live Checker ----------------
+with tab7:
+    st.subheader("🔎 Type a Complaint - Get Instant Classification")
+    st.caption("Note: This demo uses a fast keyword-based classifier (lightweight, works instantly on the web). The full AI model used for the bulk analysis above is heavier and runs offline.")
+
+    categories_keywords = {
+        "Transaction": ["deducted", "refund", "no cash", "unpaid", "double", "twice", "withdrew", "activat"],
+        "Login": ["login", "credentials", "password", "fingerprint", "biometric", "cooling period", "cnic", "otp"],
+        "Bug": ["glitch", "menu", "freeze", "load", "screenshot", "stuck", "crash", "not working", "not open"],
+        "Security": ["breach", "unknown device", "data breaching", "trust", "unauthorized", "rooted", "modified"],
+        "Support": ["complain", "helpline", "customer support", "unresolved", "no solution", "branch visit"],
+        "UI/Design": ["layout", "theme", "interface", "design", "dark mode", "ui"],
+        "Suggestion": ["please add", "should improve", "kindly", "would be better", "request"],
+    }
+
+    urgency_keywords = ["days", "weeks", "months", "years", "closing my account", "close my account",
+                         "considering", "highly disappointed", "extremely"]
+    churn_keywords = ["closing my account", "close my account", "switch bank", "leaving"]
+    negative_words = ["bad", "disappointed", "worst", "scammer", "useless", "frustrat"]
+
+    def classify_live(text):
+        text_l = text.lower()
+        matched = [cat for cat, kws in categories_keywords.items() if any(kw in text_l for kw in kws)]
+        urgency = sum(1 for kw in urgency_keywords if kw in text_l)
+        churn = any(kw in text_l for kw in churn_keywords) or ("years" in text_l and any(neg in text_l for neg in negative_words))
+        return matched or ["Positive / Other"], urgency, churn
+
+    user_input = st.text_area("Type a customer complaint here:", height=100,
+                               placeholder="e.g. my payment failed and amount got deducted but no refund")
+
+    if st.button("Classify Complaint", type="primary"):
+        if user_input.strip():
+            cats, urgency, churn = classify_live(user_input)
+            st.success(f"**Detected Category:** {', '.join(cats)}")
+            col_a, col_b = st.columns(2)
+            col_a.metric("Urgency Score", urgency)
+            col_b.metric("Churn Risk", "Yes ⚠️" if churn else "No")
+        else:
+            st.warning("Please type a complaint first.")
+
+# ---------------- TAB 8: Live Play Store Monitor ----------------
+with tab8:
+    st.subheader("📡 Check Play Store for New Reviews")
+    st.caption("Click the button to fetch the latest reviews directly from Google Play and classify any new ones instantly.")
+
+    known_keys = set((r, t) for r, t in zip(df["reviewer"], df["text"]))
+
+    if st.button("🔄 Check for New Reviews Now", type="primary"):
+        with st.spinner("Fetching latest reviews from Google Play..."):
+            try:
+                from google_play_scraper import reviews, Sort
+                result, _ = reviews(
+                    "invo8.meezan.mb",
+                    lang='en',
+                    country='pk',
+                    sort=Sort.NEWEST,
+                    count=20,
+                )
+                new_reviews = [r for r in result if (r.get("userName"), r.get("content")) not in known_keys]
+
+                if new_reviews:
+                    st.success(f"Found {len(new_reviews)} new review(s) since last dataset snapshot!")
+                    for r in new_reviews:
+                        cats, urgency, churn = classify_live(r.get("content", ""))
+                        with st.container(border=True):
+                            st.markdown(f"🆕 **{r.get('userName', 'Unknown')}** (Rating: {r.get('score', '?')}⭐)")
+                            st.write(r.get("content", ""))
+                            st.markdown(f"**Detected Category:** {', '.join(cats)} | **Urgency:** {urgency} | **Churn Risk:** {'Yes ⚠️' if churn else 'No'}")
+                else:
+                    st.info("No new reviews found right now. Google Play may take some time to index a newly posted review - try again in a few minutes.")
+            except Exception as e:
+                st.error(f"Could not fetch reviews right now: {e}")
+
 st.divider()
-st.caption("Classification powered by a pretrained zero-shot AI model (no training data required).")
+st.caption("Prototype built as part of AI/Data Analytics internship project. Bulk classification powered by a pretrained zero-shot AI model (no training data required).")
