@@ -99,6 +99,10 @@ button[data-baseweb="tab"][aria-selected="true"] {{
     border-radius: 6px;
     padding: 0.7rem 1rem;
     font-size: 0.92rem;
+    color: {INK};
+}}
+.key-finding b {{
+    color: {EMERALD_DARK};
 }}
 </style>
 """, unsafe_allow_html=True)
@@ -214,7 +218,7 @@ with note_col:
     st.markdown("##### At a glance")
     st.markdown(
         f"Out of **{total_reviews}** reviews analyzed, **{complaint_count} ({complaint_rate}%)** represent genuine complaints. "
-        f"**{churn_count}** of these show signs of churn risk or high urgency — these are the ones that would otherwise "
+        f"**{churn_count}** of these show signs of churn risk or high urgency. These are the ones that would otherwise "
         f"sit in a FIFO queue with no priority. The most common identifiable issue across the dataset is "
         f"**'Side Menu Stuck'**, mentioned **{int(side_menu_count)} times** across Bug and UI/Design reviews."
     )
