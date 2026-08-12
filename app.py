@@ -46,23 +46,23 @@ html, body, [class*="css"] {{
     font-size: 0.92rem;
     margin: 0.3rem 0 0 0;
 }}
-.typewriter-text {
+.typewriter-text {{
     display: inline-block;
     overflow: hidden;
     white-space: nowrap;
     border-right: 3px solid white;
     animation: typing 2.5s steps(53, end) forwards, blink-caret 0.75s step-end infinite;
-}
+}}
 
-@keyframes typing {
-    from { width: 0; }
-    to { width: 53ch; }
-}
+@keyframes typing {{
+    from {{ width: 0; }}
+    to {{ width: 53ch; }}
+}}
 
-@keyframes blink-caret {
-    from, to { border-color: transparent; }
-    50% { border-color: white; }
-}
+@keyframes blink-caret {{
+    from, to {{ border-color: transparent; }}
+    50% {{ border-color: white; }}
+}}
 
 .kpi-card {{
     background-color: {CREAM};
