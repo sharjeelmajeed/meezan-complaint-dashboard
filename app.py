@@ -8,118 +8,142 @@ import pandas as pd
 import plotly.express as px
 import plotly.graph_objects as go
 
-st.set_page_config(page_title="Meezan Bank - AI Complaint Analysis", layout="wide", page_icon="📊")
+st.set_page_config(page_title="Meezan Bank - AI Complaint Analysis", layout="wide")
 
 # ---------------------------------------------------------------
-# Design tokens
+# Design tokens - dark theme, vivid accents for glow/contrast
 # ---------------------------------------------------------------
-EMERALD = "#0F6B4C"
-EMERALD_DARK = "#0B4F38"
-GOLD = "#C89B3C"
-BRICK = "#B5453B"
-TEAL = "#1B4D3E"
-CREAM = "#F6F4EE"
-INK = "#1F2A24"
+BG = "#0A0B0D"
+CARD_BG = "#15171A"
+BORDER = "#262930"
+GREEN = "#22C55E"
+GREEN_DIM = "#16A34A"
+PURPLE = "#A855F7"
+RED = "#F87171"
+TEXT_PRIMARY = "#F5F5F5"
+TEXT_MUTED = "#9CA3AF"
 
 st.markdown(f"""
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Inter:wght@400;500;600&display=swap');
 
 html, body, [class*="css"] {{
     font-family: 'Inter', sans-serif;
+    background-color: {BG};
+    color: {TEXT_PRIMARY};
+}}
+[data-testid="stAppViewContainer"], [data-testid="stHeader"] {{
+    background-color: {BG} !important;
 }}
 
-.dashboard-banner {{
-    background: linear-gradient(90deg, {EMERALD_DARK} 0%, {EMERALD} 100%);
-    padding: 1.3rem 1.8rem;
-    border-radius: 10px;
-    margin-bottom: 1.3rem;
-}}
-.dashboard-banner h1 {{
-    color: white;
-    font-size: 1.6rem;
+/* Hero */
+.eyebrow {{
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 0.8rem;
     font-weight: 700;
+    letter-spacing: 0.12em;
+    color: {GREEN};
+    text-transform: uppercase;
+    margin-bottom: 0.6rem;
+}}
+.hero-title {{
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 700;
+    font-size: 2.6rem;
+    line-height: 1.15;
+    color: {TEXT_PRIMARY};
     margin: 0;
 }}
-.dashboard-banner p {{
-    color: #E4F3EC;
-    font-size: 0.92rem;
-    margin: 0.3rem 0 0 0;
+.hero-title .glow {{
+    color: {GREEN};
+    text-shadow: 0 0 28px rgba(34,197,94,0.45);
 }}
-.typewriter-text {{
-    display: inline-block;
-    overflow: hidden;
-    white-space: nowrap;
-    border-right: 3px solid white;
-    animation: typing 2.5s steps(53, end) forwards, blink-caret 0.75s step-end infinite;
+.hero-subtitle {{
+    font-size: 1rem;
+    color: {TEXT_MUTED};
+    margin-top: 0.9rem;
+    max-width: 640px;
 }}
 
-@keyframes typing {{
-    from {{ width: 0; }}
-    to {{ width: 53ch; }}
-}}
-
-@keyframes blink-caret {{
-    from, to {{ border-color: transparent; }}
-    50% {{ border-color: white; }}
-}}
-
+/* KPI cards */
 .kpi-card {{
-    background-color: {CREAM};
-    border: 1px solid #E4E0D3;
-    border-left: 4px solid {EMERALD};
-    border-radius: 8px;
-    padding: 0.8rem 1rem;
+    background-color: {CARD_BG};
+    border: 1px solid {BORDER};
+    border-top: 2px solid {GREEN};
+    border-radius: 10px;
+    padding: 1rem 1.1rem;
     height: 100%;
 }}
+.kpi-card.purple {{
+    border-top-color: {PURPLE};
+}}
 .kpi-label {{
-    font-size: 0.78rem;
-    color: #5A5546;
+    font-size: 0.72rem;
+    color: {TEXT_MUTED};
     font-weight: 600;
     text-transform: uppercase;
-    letter-spacing: 0.03em;
+    letter-spacing: 0.06em;
     margin: 0;
 }}
 .kpi-value {{
-    font-size: 1.6rem;
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 1.8rem;
     font-weight: 700;
-    color: {EMERALD_DARK};
-    margin: 0.15rem 0 0 0;
-}}
-.kpi-icon {{
-    font-size: 1.3rem;
+    color: {TEXT_PRIMARY};
+    margin: 0.3rem 0 0 0;
 }}
 
+/* Section headers */
+h2, h3, .stMarkdown h5 {{
+    font-family: 'Space Grotesk', sans-serif;
+    color: {TEXT_PRIMARY};
+}}
+
+/* Tabs */
 button[data-baseweb="tab"] {{
     font-weight: 600;
+    color: {TEXT_MUTED};
 }}
 button[data-baseweb="tab"][aria-selected="true"] {{
-    color: {EMERALD_DARK};
-    border-bottom-color: {GOLD} !important;
+    color: {GREEN} !important;
+    border-bottom-color: {GREEN} !important;
 }}
 
+/* Buttons */
 .stButton>button {{
-    background-color: {EMERALD};
-    color: white;
+    background-color: {GREEN};
+    color: #0A0B0D;
     border: none;
     border-radius: 6px;
-    font-weight: 600;
+    font-weight: 700;
 }}
 .stButton>button:hover {{
-    background-color: {EMERALD_DARK};
+    background-color: {GREEN_DIM};
     color: white;
 }}
 
+/* Key finding callout */
 .key-finding {{
-    background-color: #FBF1DE;
-    border-left: 4px solid {GOLD};
-    border-radius: 6px;
-    padding: 0.7rem 1rem;
+    background-color: {CARD_BG};
+    border: 1px solid {BORDER};
+    border-left: 3px solid {PURPLE};
+    border-radius: 8px;
+    padding: 0.8rem 1.1rem;
     font-size: 0.92rem;
-    color: {INK};
+    color: {TEXT_MUTED};
 }}
 .key-finding b {{
-    color: {EMERALD_DARK};
+    color: {TEXT_PRIMARY};
+}}
+
+/* Priority containers */
+[data-testid="stExpander"], [data-testid="stVerticalBlockBorderWrapper"] {{
+    background-color: {CARD_BG};
+    border-color: {BORDER} !important;
+}}
+
+hr {{
+    border-color: {BORDER};
 }}
 </style>
 """, unsafe_allow_html=True)
@@ -159,32 +183,40 @@ def load_data():
 df = load_data()
 
 # ---------------------------------------------------------------
-# Chart helper (interactive Plotly bar chart)
+# Chart helper (dark-theme Plotly bar chart)
 # ---------------------------------------------------------------
 def interactive_bar_chart(counts_series, color):
     chart_df = counts_series.reset_index()
     chart_df.columns = ["category", "count"]
     fig = px.bar(chart_df, x="category", y="count", text="count", color_discrete_sequence=[color])
-    fig.update_traces(textposition="outside", hovertemplate="%{x}: %{y} complaints<extra></extra>")
-    fig.update_layout(xaxis_title="", yaxis_title="Number of complaints", showlegend=False, margin=dict(t=10, b=10))
+    fig.update_traces(textposition="outside", hovertemplate="%{x}: %{y} complaints<extra></extra>",
+                       textfont=dict(color=TEXT_PRIMARY))
+    fig.update_layout(
+        xaxis_title="", yaxis_title="Number of complaints", showlegend=False,
+        margin=dict(t=10, b=10),
+        plot_bgcolor="rgba(0,0,0,0)", paper_bgcolor="rgba(0,0,0,0)",
+        font=dict(color=TEXT_MUTED),
+        xaxis=dict(gridcolor=BORDER), yaxis=dict(gridcolor=BORDER),
+    )
     st.plotly_chart(fig, use_container_width=True)
 
-def kpi_card(col, icon, label, value):
+def kpi_card(col, label, value, accent=""):
     with col:
         st.markdown(f"""
-        <div class="kpi-card">
-            <p class="kpi-label"><span class="kpi-icon">{icon}</span> {label}</p>
+        <div class="kpi-card {accent}">
+            <p class="kpi-label">{label}</p>
             <p class="kpi-value">{value}</p>
         </div>
         """, unsafe_allow_html=True)
 
 # ---------------------------------------------------------------
-# Header
+# Header / Hero
 # ---------------------------------------------------------------
 st.markdown("""
-<div class="dashboard-banner">
-    <h1><span class="typewriter-text">📊 Meezan Bank App — AI-Powered Complaint Analysis</span></h1>
-    <p>Prototype dashboard: automatically classifies customer reviews and highlights priority complaints.</p>
+<div style="padding: 1rem 0 1.5rem 0;">
+    <div class="eyebrow">AI-Powered Complaint Analysis</div>
+    <h1 class="hero-title">Meezan Bank App.<br><span class="glow">Understood at scale.</span></h1>
+    <p class="hero-subtitle">A prototype dashboard that automatically classifies customer reviews and surfaces the complaints that matter most — before they turn into churn.</p>
 </div>
 """, unsafe_allow_html=True)
 
@@ -206,12 +238,12 @@ side_menu_count = (
 )
 
 k1, k2, k3, k4, k5, k6 = st.columns(6)
-kpi_card(k1, "📝", "Total Reviews", total_reviews)
-kpi_card(k2, "⚠️", "Complaint Rate", f"{complaint_rate}%")
-kpi_card(k3, "📉", "Churn Risk", churn_count)
-kpi_card(k4, "⭐", "Avg Rating", avg_rating)
-kpi_card(k5, "🏷️", "Top Issue", top_category)
-kpi_card(k6, "🔁", "'Side Menu Stuck' Mentions", int(side_menu_count))
+kpi_card(k1, "Total Reviews", total_reviews)
+kpi_card(k2, "Complaint Rate", f"{complaint_rate}%")
+kpi_card(k3, "Churn Risk", churn_count, "purple")
+kpi_card(k4, "Avg Rating", avg_rating)
+kpi_card(k5, "Top Issue", top_category, "purple")
+kpi_card(k6, "'Side Menu Stuck' Mentions", int(side_menu_count))
 
 st.write("")
 
@@ -225,19 +257,25 @@ with donut_col:
         "count": [total_reviews - complaint_count, complaint_count]
     })
     fig_donut = go.Figure(data=[go.Pie(
-        labels=donut_df["type"], values=donut_df["count"], hole=0.55,
-        marker=dict(colors=[EMERALD, BRICK]),
+        labels=donut_df["type"], values=donut_df["count"], hole=0.6,
+        marker=dict(colors=[GREEN, PURPLE], line=dict(color=BG, width=2)),
         textinfo="label+percent",
+        textfont=dict(color=TEXT_PRIMARY),
     )])
-    fig_donut.update_layout(margin=dict(t=10, b=10, l=10, r=10), height=280, showlegend=False)
+    fig_donut.update_layout(
+        margin=dict(t=10, b=10, l=10, r=10), height=280, showlegend=False,
+        plot_bgcolor="rgba(0,0,0,0)", paper_bgcolor="rgba(0,0,0,0)",
+    )
     st.plotly_chart(fig_donut, use_container_width=True)
 with note_col:
     st.markdown("##### At a glance")
     st.markdown(
-        f"Out of **{total_reviews}** reviews analyzed, **{complaint_count} ({complaint_rate}%)** represent genuine complaints. "
-        f"**{churn_count}** of these show signs of churn risk or high urgency. These are the ones that would otherwise "
+        f"<span style='color:{TEXT_MUTED}'>Out of <b style='color:{TEXT_PRIMARY}'>{total_reviews}</b> reviews analyzed, "
+        f"<b style='color:{TEXT_PRIMARY}'>{complaint_count} ({complaint_rate}%)</b> represent genuine complaints. "
+        f"<b style='color:{TEXT_PRIMARY}'>{churn_count}</b> of these show signs of churn risk or high urgency — these are the ones that would otherwise "
         f"sit in a FIFO queue with no priority. The most common identifiable issue across the dataset is "
-        f"**'Side Menu Stuck'**, mentioned **{int(side_menu_count)} times** across Bug and UI/Design reviews."
+        f"<b style='color:{TEXT_PRIMARY}'>'Side Menu Stuck'</b>, mentioned <b style='color:{TEXT_PRIMARY}'>{int(side_menu_count)} times</b> across Bug and UI/Design reviews.</span>",
+        unsafe_allow_html=True
     )
 
 st.divider()
@@ -253,7 +291,7 @@ tab1, tab2, tab3, tab4, tab5, tab6, tab7, tab8 = st.tabs([
 with tab1:
     st.subheader("Complaint Category Breakdown")
     category_counts = df[df["predicted_category"] != "Positive"]["predicted_category"].value_counts()
-    interactive_bar_chart(category_counts, EMERALD)
+    interactive_bar_chart(category_counts, GREEN)
     st.caption("Note: This is a prototype AI classification (~75% accuracy). Rare categories have limited training examples.")
 
 # ---------------- TAB 2: Bugs ----------------
@@ -263,8 +301,8 @@ with tab2:
 
     if len(bug_df) > 0:
         bug_counts = bug_df["bug_subcategory"].value_counts()
-        interactive_bar_chart(bug_counts, BRICK)
-        st.markdown('<div class="key-finding">🔑 <b>Key Finding:</b> \'Side Menu Stuck\' issue is the most repeated, identifiable bug.</div>', unsafe_allow_html=True)
+        interactive_bar_chart(bug_counts, PURPLE)
+        st.markdown('<div class="key-finding"><b>Key Finding:</b> \'Side Menu Stuck\' issue is the most repeated, identifiable bug.</div>', unsafe_allow_html=True)
 
         with st.expander("View raw complaint text"):
             st.dataframe(bug_df[["reviewer", "text", "bug_subcategory"]], use_container_width=True)
@@ -278,7 +316,7 @@ with tab3:
 
     if len(txn_df) > 0:
         txn_counts = txn_df["transaction_subcategory"].value_counts()
-        interactive_bar_chart(txn_counts, GOLD)
+        interactive_bar_chart(txn_counts, GREEN_DIM)
         st.caption("Note: Many customers don't specify the exact payment method (Bill/QR/IBFT/Raast) - these are marked 'Unspecified'.")
 
         with st.expander("View raw complaint text"):
@@ -293,8 +331,8 @@ with tab4:
 
     if len(ui_df) > 0:
         ui_counts = ui_df["ui_subcategory"].value_counts()
-        interactive_bar_chart(ui_counts, TEAL)
-        st.markdown('<div class="key-finding">🔑 <b>Key Finding:</b> Combined with Bugs tab, \'Side Menu Stuck\' was mentioned 8 times total - including one device-specific case (Vivo Y20s, Android 10).</div>', unsafe_allow_html=True)
+        interactive_bar_chart(ui_counts, PURPLE)
+        st.markdown('<div class="key-finding"><b>Key Finding:</b> Combined with Bugs tab, \'Side Menu Stuck\' was mentioned 8 times total - including one device-specific case (Vivo Y20s, Android 10).</div>', unsafe_allow_html=True)
 
         with st.expander("View raw complaint text"):
             st.dataframe(ui_df[["reviewer", "text", "ui_subcategory"]], use_container_width=True)
@@ -314,7 +352,7 @@ with tab5:
 
 # ---------------- TAB 6: Priority Complaints ----------------
 with tab6:
-    st.subheader("⚠️ High Priority Complaints (Urgency or Churn Risk)")
+    st.subheader("High Priority Complaints (Urgency or Churn Risk)")
     priority_df = df[(df["churn_risk"] == True) | (df["urgency_score"] >= 2)]
     priority_df = priority_df[priority_df["predicted_category"] != "Positive"]
 
@@ -328,7 +366,7 @@ with tab6:
 
 # ---------------- TAB 7: Live Checker ----------------
 with tab7:
-    st.subheader("🔎 Type a Complaint - Get Instant Classification")
+    st.subheader("Type a Complaint - Get Instant Classification")
     st.caption("Note: This demo uses a fast keyword-based classifier (lightweight, works instantly on the web). The full AI model used for the bulk analysis above is heavier and runs offline.")
 
     user_input = st.text_area("Type a customer complaint here:", height=100,
@@ -340,18 +378,18 @@ with tab7:
             st.success(f"**Detected Category:** {', '.join(cats)}")
             col_a, col_b = st.columns(2)
             col_a.metric("Urgency Score", urgency)
-            col_b.metric("Churn Risk", "Yes ⚠️" if churn else "No")
+            col_b.metric("Churn Risk", "Yes" if churn else "No")
         else:
             st.warning("Please type a complaint first.")
 
 # ---------------- TAB 8: Live Play Store Monitor ----------------
 with tab8:
-    st.subheader("📡 Check Play Store for New Reviews")
+    st.subheader("Check Play Store for New Reviews")
     st.caption("Click the button to fetch the latest reviews directly from Google Play and classify any new ones instantly.")
 
     known_keys = set((r, t) for r, t in zip(df["reviewer"], df["text"]))
 
-    if st.button("🔄 Check for New Reviews Now", type="primary"):
+    if st.button("Check for New Reviews Now", type="primary"):
         with st.spinner("Fetching latest reviews from Google Play..."):
             try:
                 from google_play_scraper import reviews, Sort
@@ -369,9 +407,9 @@ with tab8:
                     for r in new_reviews:
                         cats, urgency, churn = classify_live(r.get("content", ""))
                         with st.container(border=True):
-                            st.markdown(f"🆕 **{r.get('userName', 'Unknown')}** (Rating: {r.get('score', '?')}⭐)")
+                            st.markdown(f"**{r.get('userName', 'Unknown')}** (Rating: {r.get('score', '?')})")
                             st.write(r.get("content", ""))
-                            st.markdown(f"**Detected Category:** {', '.join(cats)} | **Urgency:** {urgency} | **Churn Risk:** {'Yes ⚠️' if churn else 'No'}")
+                            st.markdown(f"**Detected Category:** {', '.join(cats)} | **Urgency:** {urgency} | **Churn Risk:** {'Yes' if churn else 'No'}")
                 else:
                     st.info("No new reviews found right now. Google Play may take some time to index a newly posted review - try again in a few minutes.")
             except Exception as e:
