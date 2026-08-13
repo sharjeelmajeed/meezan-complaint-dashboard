@@ -10,9 +10,9 @@ import plotly.graph_objects as go
 
 st.set_page_config(page_title="Meezan Bank - AI Complaint Analysis", layout="wide")
 
-# ---------------------------------------------------------------
+
 # Design tokens - dark theme, vivid accents for glow/contrast
-# ---------------------------------------------------------------
+
 BG = "#0A0B0D"
 CARD_BG = "#15171A"
 BORDER = "#262930"
@@ -148,9 +148,9 @@ hr {{
 </style>
 """, unsafe_allow_html=True)
 
-# ---------------------------------------------------------------
+
 # Shared keyword classifier (used by Live Checker and Play Store Monitor)
-# ---------------------------------------------------------------
+
 categories_keywords = {
     "Transaction": ["deducted", "refund", "no cash", "unpaid", "double", "twice", "withdrew", "activat"],
     "Login": ["login", "credentials", "password", "fingerprint", "biometric", "cooling period", "cnic", "otp"],
@@ -172,9 +172,9 @@ def classify_live(text):
     churn = any(kw in text_l for kw in churn_keywords) or ("years" in text_l and any(neg in text_l for neg in negative_words))
     return matched or ["Positive / Other"], urgency, churn
 
-# ---------------------------------------------------------------
+
 # Load data
-# ---------------------------------------------------------------
+
 @st.cache_data
 def load_data():
     df = pd.read_csv("dashboard_data.csv")
@@ -182,9 +182,9 @@ def load_data():
 
 df = load_data()
 
-# ---------------------------------------------------------------
+
 # Chart helper (dark-theme Plotly bar chart)
-# ---------------------------------------------------------------
+
 def interactive_bar_chart(counts_series, color):
     chart_df = counts_series.reset_index()
     chart_df.columns = ["category", "count"]
@@ -209,20 +209,20 @@ def kpi_card(col, label, value, accent=""):
         </div>
         """, unsafe_allow_html=True)
 
-# ---------------------------------------------------------------
+
 # Header / Hero
-# ---------------------------------------------------------------
+
 st.markdown("""
 <div style="padding: 1rem 0 1.5rem 0;">
     <div class="eyebrow">AI-Powered Complaint Analysis</div>
-    <h1 class="hero-title">Meezan Bank App.<br><span class="glow">Understood at scale.</span></h1>
-    <p class="hero-subtitle">A prototype dashboard that automatically classifies customer reviews and surfaces the complaints that matter most — before they turn into churn.</p>
+    <h1 class="hero-title">Meezan Bank App.<br><span class="glow">Complaints, prioritized</span></h1>
+    <p class="hero-subtitle">A prototype dashboard that automatically classifies customer reviews and surfaces the complaints that matter most before they turn into churn.</p>
 </div>
 """, unsafe_allow_html=True)
 
-# ---------------------------------------------------------------
-# KPI row (computed dynamically from the data - no hardcoded numbers)
-# ---------------------------------------------------------------
+
+# KPI row 
+
 total_reviews = len(df)
 complaint_count = len(df[df["predicted_category"] != "Positive"])
 complaint_rate = round((complaint_count / total_reviews) * 100, 1) if total_reviews else 0
@@ -247,9 +247,9 @@ kpi_card(k6, "'Side Menu Stuck' Mentions", int(side_menu_count))
 
 st.write("")
 
-# ---------------------------------------------------------------
+
 # Summary donut chart
-# ---------------------------------------------------------------
+
 donut_col, note_col = st.columns([1, 2])
 with donut_col:
     donut_df = pd.DataFrame({
@@ -280,9 +280,9 @@ with note_col:
 
 st.divider()
 
-# ---------------------------------------------------------------
+
 # Tabs for each section
-# ---------------------------------------------------------------
+
 tab1, tab2, tab3, tab4, tab5, tab6, tab7, tab8 = st.tabs([
     "Overview", "Bugs", "Transactions", "UI/UX", "Feedback", "Priority Complaints", "Live Checker", "Play Store Monitor"
 ])
