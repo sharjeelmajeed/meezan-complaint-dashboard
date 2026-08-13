@@ -7,12 +7,13 @@ import streamlit as st
 import pandas as pd
 import plotly.express as px
 import plotly.graph_objects as go
+import streamlit.components.v1 as components
 
 st.set_page_config(page_title="Meezan Bank - AI Complaint Analysis", layout="wide")
 
-
+# ---------------------------------------------------------------
 # Design tokens - dark theme, vivid accents for glow/contrast
-
+# ---------------------------------------------------------------
 BG = "#0A0B0D"
 CARD_BG = "#15171A"
 BORDER = "#262930"
@@ -36,7 +37,60 @@ html, body, [class*="css"] {{
     background-color: {BG} !important;
 }}
 
+/* Custom scrollbar */
+::-webkit-scrollbar {{ width: 10px; height: 10px; }}
+::-webkit-scrollbar-track {{ background: {BG}; }}
+::-webkit-scrollbar-thumb {{ background: {BORDER}; border-radius: 10px; }}
+::-webkit-scrollbar-thumb:hover {{ background: {GREEN}; }}
+* {{ scrollbar-width: thin; scrollbar-color: {BORDER} {BG}; }}
+
 /* Hero */
+.hero-wrap {{
+    position: relative;
+    padding: 1rem 0 1.5rem 0;
+    overflow: hidden;
+}}
+.hero-wrap::before {{
+    content: "";
+    position: absolute;
+    top: -140px;
+    left: -100px;
+    width: 480px;
+    height: 480px;
+    background: radial-gradient(circle, rgba(34,197,94,0.16) 0%, rgba(34,197,94,0) 70%);
+    z-index: 0;
+    pointer-events: none;
+}}
+.hero-wrap > * {{
+    position: relative;
+    z-index: 1;
+}}
+.live-badge {{
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    background-color: {CARD_BG};
+    border: 1px solid {BORDER};
+    border-radius: 20px;
+    padding: 4px 12px;
+    font-size: 0.75rem;
+    color: {TEXT_MUTED};
+    font-weight: 600;
+    margin-bottom: 0.9rem;
+}}
+.live-dot {{
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background-color: {GREEN};
+    animation: pulse 1.8s infinite;
+}}
+@keyframes pulse {{
+    0% {{ box-shadow: 0 0 0 0 rgba(34,197,94,0.5); }}
+    70% {{ box-shadow: 0 0 0 8px rgba(34,197,94,0); }}
+    100% {{ box-shadow: 0 0 0 0 rgba(34,197,94,0); }}
+}}
+
 .eyebrow {{
     font-family: 'Space Grotesk', sans-serif;
     font-size: 0.8rem;
@@ -63,34 +117,6 @@ html, body, [class*="css"] {{
     color: {TEXT_MUTED};
     margin-top: 0.9rem;
     max-width: 640px;
-}}
-
-/* KPI cards */
-.kpi-card {{
-    background-color: {CARD_BG};
-    border: 1px solid {BORDER};
-    border-top: 2px solid {GREEN};
-    border-radius: 10px;
-    padding: 1rem 1.1rem;
-    height: 100%;
-}}
-.kpi-card.purple {{
-    border-top-color: {PURPLE};
-}}
-.kpi-label {{
-    font-size: 0.72rem;
-    color: {TEXT_MUTED};
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 0.06em;
-    margin: 0;
-}}
-.kpi-value {{
-    font-family: 'Space Grotesk', sans-serif;
-    font-size: 1.8rem;
-    font-weight: 700;
-    color: {TEXT_PRIMARY};
-    margin: 0.3rem 0 0 0;
 }}
 
 /* Section headers */
@@ -148,9 +174,9 @@ hr {{
 </style>
 """, unsafe_allow_html=True)
 
-
+# ---------------------------------------------------------------
 # Shared keyword classifier (used by Live Checker and Play Store Monitor)
-
+# ---------------------------------------------------------------
 categories_keywords = {
     "Transaction": ["deducted", "refund", "no cash", "unpaid", "double", "twice", "withdrew", "activat"],
     "Login": ["login", "credentials", "password", "fingerprint", "biometric", "cooling period", "cnic", "otp"],
@@ -172,9 +198,9 @@ def classify_live(text):
     churn = any(kw in text_l for kw in churn_keywords) or ("years" in text_l and any(neg in text_l for neg in negative_words))
     return matched or ["Positive / Other"], urgency, churn
 
-
+# ---------------------------------------------------------------
 # Load data
-
+# ---------------------------------------------------------------
 @st.cache_data
 def load_data():
     df = pd.read_csv("dashboard_data.csv")
@@ -182,9 +208,9 @@ def load_data():
 
 df = load_data()
 
-
+# ---------------------------------------------------------------
 # Chart helper (dark-theme Plotly bar chart)
-
+# ---------------------------------------------------------------
 def interactive_bar_chart(counts_series, color):
     chart_df = counts_series.reset_index()
     chart_df.columns = ["category", "count"]
@@ -200,29 +226,96 @@ def interactive_bar_chart(counts_series, color):
     )
     st.plotly_chart(fig, use_container_width=True)
 
-def kpi_card(col, label, value, accent=""):
-    with col:
-        st.markdown(f"""
-        <div class="kpi-card {accent}">
-            <p class="kpi-label">{label}</p>
-            <p class="kpi-value">{value}</p>
+# ---------------------------------------------------------------
+# KPI row - rendered as a single HTML component with count-up animation and hover-lift
+# ---------------------------------------------------------------
+def render_kpi_row(items):
+    cards_html = ""
+    for item in items:
+        accent_class = "purple" if item.get("accent") == "purple" else "green"
+        if item["numeric"]:
+            suffix = item.get("suffix", "")
+            value_html = (
+                f'<span class="count" data-target="{item["value"]}" data-decimals="{item["decimals"]}">0</span>{suffix}'
+            )
+        else:
+            value_html = f'{item["value"]}'
+        cards_html += f'''
+        <div class="kpi-card {accent_class}">
+            <p class="kpi-label">{item["label"]}</p>
+            <p class="kpi-value">{value_html}</p>
         </div>
-        """, unsafe_allow_html=True)
+        '''
 
+    template = """
+    <style>
+    * { box-sizing: border-box; }
+    body { margin: 0; font-family: 'Inter', sans-serif; background: transparent; }
+    .kpi-row { display: flex; gap: 12px; }
+    .kpi-card {
+        flex: 1; background-color: @@CARD_BG@@; border: 1px solid @@BORDER@@;
+        border-top: 2px solid @@GREEN@@; border-radius: 10px; padding: 14px 16px;
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    .kpi-card.purple { border-top-color: @@PURPLE@@; }
+    .kpi-card:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 8px 24px rgba(0,0,0,0.45);
+    }
+    .kpi-label {
+        font-size: 11px; color: @@TEXT_MUTED@@; font-weight: 600;
+        text-transform: uppercase; letter-spacing: 0.06em; margin: 0;
+        font-family: Inter, sans-serif;
+    }
+    .kpi-value {
+        font-family: 'Space Grotesk', sans-serif; font-size: 26px; font-weight: 700;
+        color: @@TEXT_PRIMARY@@; margin: 6px 0 0 0;
+    }
+    </style>
+    <div class="kpi-row">
+    @@CARDS@@
+    </div>
+    <script>
+    document.querySelectorAll('.count').forEach(function(el){
+        var target = parseFloat(el.getAttribute('data-target'));
+        var decimals = parseInt(el.getAttribute('data-decimals'));
+        var duration = 900;
+        var startTime = null;
+        function step(timestamp){
+            if(!startTime) { startTime = timestamp; }
+            var progress = Math.min((timestamp - startTime) / duration, 1);
+            var current = target * progress;
+            el.textContent = current.toFixed(decimals);
+            if(progress < 1){ requestAnimationFrame(step); } else { el.textContent = target.toFixed(decimals); }
+        }
+        requestAnimationFrame(step);
+    });
+    </script>
+    """
+    template = template.replace("@@CARD_BG@@", CARD_BG)
+    template = template.replace("@@BORDER@@", BORDER)
+    template = template.replace("@@GREEN@@", GREEN)
+    template = template.replace("@@PURPLE@@", PURPLE)
+    template = template.replace("@@TEXT_MUTED@@", TEXT_MUTED)
+    template = template.replace("@@TEXT_PRIMARY@@", TEXT_PRIMARY)
+    template = template.replace("@@CARDS@@", cards_html)
+    return template
 
+# ---------------------------------------------------------------
 # Header / Hero
-
-st.markdown("""
-<div style="padding: 1rem 0 1.5rem 0;">
+# ---------------------------------------------------------------
+st.markdown(f"""
+<div class="hero-wrap">
+    <div class="live-badge"><span class="live-dot"></span>Live Prototype</div>
     <div class="eyebrow">AI-Powered Complaint Analysis</div>
-    <h1 class="hero-title">Meezan Bank App.<br><span class="glow">Complaints, prioritized</span></h1>
-    <p class="hero-subtitle">A prototype dashboard that automatically classifies customer reviews and surfaces the complaints that matter most before they turn into churn.</p>
+    <h1 class="hero-title">Meezan Bank App.<br><span class="glow">Complaints, prioritized.</span></h1>
+    <p class="hero-subtitle">A prototype dashboard that automatically classifies customer reviews and surfaces the complaints that matter most — before they turn into churn.</p>
 </div>
 """, unsafe_allow_html=True)
 
-
-# KPI row 
-
+# ---------------------------------------------------------------
+# KPI values (computed dynamically from the data - no hardcoded numbers)
+# ---------------------------------------------------------------
 total_reviews = len(df)
 complaint_count = len(df[df["predicted_category"] != "Positive"])
 complaint_rate = round((complaint_count / total_reviews) * 100, 1) if total_reviews else 0
@@ -237,19 +330,22 @@ side_menu_count = (
     + (df["ui_subcategory"].astype(str).str.contains("Menu", na=False) & df["ui_subcategory"].astype(str).str.contains("Stuck", na=False)).sum()
 )
 
-k1, k2, k3, k4, k5, k6 = st.columns(6)
-kpi_card(k1, "Total Reviews", total_reviews)
-kpi_card(k2, "Complaint Rate", f"{complaint_rate}%")
-kpi_card(k3, "Churn Risk", churn_count, "purple")
-kpi_card(k4, "Avg Rating", avg_rating)
-kpi_card(k5, "Top Issue", top_category, "purple")
-kpi_card(k6, "'Side Menu Stuck' Mentions", int(side_menu_count))
+kpi_items = [
+    {"label": "Total Reviews", "value": total_reviews, "numeric": True, "decimals": 0, "accent": "green"},
+    {"label": "Complaint Rate", "value": complaint_rate, "numeric": True, "decimals": 1, "suffix": "%", "accent": "green"},
+    {"label": "Churn Risk", "value": churn_count, "numeric": True, "decimals": 0, "accent": "purple"},
+    {"label": "Avg Rating", "value": avg_rating, "numeric": True, "decimals": 2, "accent": "green"},
+    {"label": "Top Issue", "value": top_category, "numeric": False, "accent": "purple"},
+    {"label": "'Side Menu Stuck' Mentions", "value": int(side_menu_count), "numeric": True, "decimals": 0, "accent": "green"},
+]
+
+components.html(render_kpi_row(kpi_items), height=140)
 
 st.write("")
 
-
+# ---------------------------------------------------------------
 # Summary donut chart
-
+# ---------------------------------------------------------------
 donut_col, note_col = st.columns([1, 2])
 with donut_col:
     donut_df = pd.DataFrame({
@@ -280,9 +376,9 @@ with note_col:
 
 st.divider()
 
-
+# ---------------------------------------------------------------
 # Tabs for each section
-
+# ---------------------------------------------------------------
 tab1, tab2, tab3, tab4, tab5, tab6, tab7, tab8 = st.tabs([
     "Overview", "Bugs", "Transactions", "UI/UX", "Feedback", "Priority Complaints", "Live Checker", "Play Store Monitor"
 ])
