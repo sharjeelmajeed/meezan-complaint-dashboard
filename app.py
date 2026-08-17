@@ -441,12 +441,19 @@ with tab6:
     priority_df = priority_df[priority_df["predicted_category"] != "Positive"]
 
     if len(priority_df) > 0:
-        for _, row in priority_df.iterrows():
-            with st.container(border=True):
-                st.markdown(f"**Category:** {row['predicted_category']} | **Urgency:** {row['urgency_score']} | **Churn Risk:** {row['churn_risk']}")
-                st.write(row["text"])
-    else:
-        st.info("No high-priority complaints found in this dataset.")
+    csv_data = priority_df[["predicted_category", "urgency_score", "churn_risk", "text"]].to_csv(index=False)
+    st.download_button(
+        label="Download Priority Complaints (CSV)",
+        data=csv_data,
+        file_name="priority_complaints.csv",
+        mime="text/csv"
+    )
+    for _, row in priority_df.iterrows():
+        with st.container(border=True):
+            st.markdown(f"**Category:** {row['predicted_category']} | **Urgency:** {row['urgency_score']} | **Churn Risk:** {row['churn_risk']}")
+            st.write(row["text"])
+else:
+    st.info("No high-priority complaints found in this dataset.")
 
 # ---------------- TAB 7: Live Checker ----------------
 with tab7:
