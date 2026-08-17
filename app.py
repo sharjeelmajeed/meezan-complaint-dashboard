@@ -297,7 +297,7 @@ st.markdown(f"""
     <div class="live-badge"><span class="live-dot"></span>Live Prototype</div>
     <div class="eyebrow">AI-Powered Complaint Analysis</div>
     <h1 class="hero-title">Meezan Bank App.<br><span class="glow">Complaints, prioritized.</span></h1>
-    <p class="hero-subtitle">A prototype dashboard that automatically classifies customer reviews and surfaces the complaints that matter most — before they turn into churn.</p>
+    <p class="hero-subtitle">A prototype dashboard that automatically classifies customer reviews and surfaces the complaints that matter most  before they turn into churn.</p>
 </div>
 """, unsafe_allow_html=True)
 
