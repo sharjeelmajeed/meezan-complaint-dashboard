@@ -356,7 +356,7 @@ with note_col:
     st.markdown(
         f"<span style='color:{TEXT_MUTED}'>Out of <b style='color:{TEXT_PRIMARY}'>{total_reviews}</b> reviews analyzed, "
         f"<b style='color:{TEXT_PRIMARY}'>{complaint_count} ({complaint_rate}%)</b> represent genuine complaints. "
-        f"<b style='color:{TEXT_PRIMARY}'>{churn_count}</b> of these show signs of churn risk or high urgency — these are the ones that would otherwise "
+        f"<b style='color:{TEXT_PRIMARY}'>{churn_count}</b> of these show signs of churn risk or high urgency. These are the ones that would otherwise "
         f"sit in a FIFO queue with no priority. The most common identifiable issue across the dataset is "
         f"<b style='color:{TEXT_PRIMARY}'>'Side Menu Stuck'</b>, mentioned <b style='color:{TEXT_PRIMARY}'>{int(side_menu_count)} times</b> across Bug and UI/Design reviews.</span>",
         unsafe_allow_html=True
