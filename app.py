@@ -46,21 +46,9 @@ html, body, [class*="css"] {{
 
 /* Hero */
 .hero-wrap {{
-    position: relative;
     padding: 1rem 0 1.5rem 0;
-    overflow: hidden;
 }}
-.hero-wrap::before {{
-    content: "";
-    position: absolute;
-    top: -140px;
-    left: -100px;
-    width: 480px;
-    height: 480px;
-    background: radial-gradient(circle, rgba(34,197,94,0.16) 0%, rgba(34,197,94,0) 70%);
-    z-index: 0;
-    pointer-events: none;
-}}
+
 .hero-wrap > * {{
     position: relative;
     z-index: 1;
