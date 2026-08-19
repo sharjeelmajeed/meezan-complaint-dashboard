@@ -256,8 +256,8 @@ def render_kpi_row(items):
         font-family: Inter, sans-serif;
     }
     .kpi-value {
-        font-family: 'Space Grotesk', sans-serif; font-size: 26px; font-weight: 700;
-        color: @@TEXT_PRIMARY@@; margin: 6px 0 0 0;
+        font-family: 'Space Grotesk', sans-serif; font-size: 20px; font-weight: 700;
+        color: @@TEXT_PRIMARY@@; margin: 6px 0 0 0; line-height: 1.25;
     }
     </style>
     <div class="kpi-row">
