@@ -527,8 +527,6 @@ with tab8:
             except Exception as e:
                 st.error(f"Could not fetch official rating right now: {e}")
 
-st.divider()
-
 # ---------------- TAB 9: Critical Reviews (1-2 star) ----------------
 with tab9:
     st.subheader("Critical Reviews - 1 and 2 Star Only")
