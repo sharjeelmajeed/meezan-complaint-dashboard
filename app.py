@@ -528,7 +528,7 @@ with tab8:
                 st.error(f"Could not fetch official rating right now: {e}")
 
 st.divider()
-st.caption("Bulk classification powered by a pretrained zero-shot AI model (no training data required).")
+
 # ---------------- TAB 9: Critical Reviews (1-2 star) ----------------
 with tab9:
     st.subheader("Critical Reviews - 1 and 2 Star Only")
