@@ -390,7 +390,9 @@ with tab2:
     if len(bug_df) > 0:
         bug_counts = bug_df["bug_subcategory"].value_counts()
         interactive_bar_chart(bug_counts, PURPLE)
-        st.markdown('<div class="key-finding"><b>Key Finding:</b> \'Side Menu Stuck\' issue is the most repeated, identifiable bug.</div>', unsafe_allow_html=True)
+        bug_top_label = bug_counts.index[0]
+        bug_top_count = int(bug_counts.iloc[0])
+        st.markdown(f'<div class="key-finding"><b>Key Finding:</b> \'{bug_top_label}\' is the most common bug, reported {bug_top_count} times.</div>', unsafe_allow_html=True)
 
         with st.expander("View raw complaint text"):
             st.dataframe(bug_df[["reviewer", "text", "bug_subcategory"]], use_container_width=True)
@@ -420,7 +422,9 @@ with tab4:
     if len(ui_df) > 0:
         ui_counts = ui_df["ui_subcategory"].value_counts()
         interactive_bar_chart(ui_counts, PURPLE)
-        st.markdown('<div class="key-finding"><b>Key Finding:</b> Combined with Bugs tab, \'Side Menu Stuck\' was mentioned 8 times total - including one device-specific case (Vivo Y20s, Android 10).</div>', unsafe_allow_html=True)
+        ui_top_label = ui_counts.index[0]
+        ui_top_count = int(ui_counts.iloc[0])
+        st.markdown(f'<div class="key-finding"><b>Key Finding:</b> \'{ui_top_label}\' is the most common UI/UX issue, reported {ui_top_count} times.</div>', unsafe_allow_html=True)
 
         with st.expander("View raw complaint text"):
             st.dataframe(ui_df[["reviewer", "text", "ui_subcategory"]], use_container_width=True)
