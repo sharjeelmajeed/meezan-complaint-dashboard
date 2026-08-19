@@ -310,8 +310,11 @@ complaint_rate = round((complaint_count / total_reviews) * 100, 1) if total_revi
 churn_count = int(df["churn_risk"].sum())
 avg_rating = round(df["rating"].mean(), 2)
 
-top_category_series = df[df["predicted_category"] != "Positive"]["predicted_category"].value_counts()
+top_category_series = df[~df["predicted_category"].isin(["Positive", "Suggestion", "Other"])]["predicted_category"].value_counts()
 top_category = top_category_series.index[0] if len(top_category_series) > 0 else "N/A"
+
+feature_request_series = df[(df["suggestion_type"] != "") & (df["suggestion_type"] != "Other Feature Request")]["suggestion_type"].value_counts()
+top_feature_request = feature_request_series.index[0] if len(feature_request_series) > 0 else "N/A"
 
 side_menu_count = (
     (df["bug_subcategory"].astype(str).str.contains("Menu", na=False) & df["bug_subcategory"].astype(str).str.contains("Stuck", na=False)).sum()
@@ -323,7 +326,8 @@ kpi_items = [
     {"label": "Complaint Rate", "value": complaint_rate, "numeric": True, "decimals": 1, "suffix": "%", "accent": "green"},
     {"label": "Churn Risk", "value": churn_count, "numeric": True, "decimals": 0, "accent": "purple"},
     {"label": "Avg Rating", "value": avg_rating, "numeric": True, "decimals": 2, "accent": "green"},
-    {"label": "Top Issue", "value": top_category, "numeric": False, "accent": "purple"},
+    {"label": "Top Complaint Category", "value": top_category, "numeric": False, "accent": "purple"},
+    {"label": "Most Requested Feature", "value": top_feature_request, "numeric": False, "accent": "green"},
     {"label": "'Side Menu Stuck' Mentions", "value": int(side_menu_count), "numeric": True, "decimals": 0, "accent": "green"},
 ]
 
