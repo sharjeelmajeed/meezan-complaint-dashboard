@@ -371,8 +371,8 @@ st.divider()
 # ---------------------------------------------------------------
 # Tabs for each section
 # ---------------------------------------------------------------
-tab1, tab2, tab3, tab4, tab5, tab6, tab7, tab8 = st.tabs([
-    "Overview", "Bugs", "Transactions", "UI/UX", "Feedback", "Priority Complaints", "Live Checker", "Play Store Monitor"
+tab1, tab2, tab3, tab4, tab5, tab6, tab7, tab8, tab9 = st.tabs([
+    "Overview", "Bugs", "Transactions", "UI/UX", "Feedback", "Priority Complaints", "Live Checker", "Play Store Monitor", "Critical Reviews (1-2★)"
 ])
 
 # ---------------- TAB 1: Overview ----------------
@@ -485,9 +485,7 @@ with tab7:
 with tab8:
     st.subheader("Check Play Store for New Reviews")
     st.caption("Click the button to fetch the latest reviews directly from Google Play and classify any new ones instantly.")
-
     known_keys = set((r, t) for r, t in zip(df["reviewer"], df["text"]))
-
     if st.button("Check for New Reviews Now", type="primary"):
         with st.spinner("Fetching latest reviews from Google Play..."):
             try:
@@ -500,7 +498,6 @@ with tab8:
                     count=20,
                 )
                 new_reviews = [r for r in result if (r.get("userName"), r.get("content")) not in known_keys]
-
                 if new_reviews:
                     st.success(f"Found {len(new_reviews)} new review(s) since last dataset snapshot!")
                     for r in new_reviews:
@@ -513,6 +510,56 @@ with tab8:
                     st.info("No new reviews found right now. Google Play may take some time to index a newly posted review - try again in a few minutes.")
             except Exception as e:
                 st.error(f"Could not fetch reviews right now: {e}")
+
+    st.divider()
+    st.subheader("Official Play Store Rating")
+    st.caption("This fetches Meezan Bank's live, official rating directly from Google Play - based on ALL reviews on the store, not just this sample.")
+
+    if st.button("Check Official App Rating"):
+        with st.spinner("Fetching official rating from Google Play..."):
+            try:
+                from google_play_scraper import app as gp_app
+                app_info = gp_app("invo8.meezan.mb", lang='en', country='pk')
+                col_a, col_b, col_c = st.columns(3)
+                col_a.metric("Official Rating", round(app_info.get("score", 0), 2))
+                col_b.metric("Total Ratings", f"{app_info.get('ratings', 0):,}")
+                col_c.metric("Total Reviews", f"{app_info.get('reviews', 0):,}")
+            except Exception as e:
+                st.error(f"Could not fetch official rating right now: {e}")
+
+st.divider()
+st.caption("Bulk classification powered by a pretrained zero-shot AI model (no training data required).")
+# ---------------- TAB 9: Critical Reviews (1-2 star) ----------------
+with tab9:
+    st.subheader("Critical Reviews - 1 and 2 Star Only")
+    st.caption("A focused view of the lowest-rated reviews, since these are most likely to represent serious, unresolved problems.")
+
+    critical_df = df[df["rating"] <= 2]
+    critical_count = len(critical_df)
+    critical_pct = round((critical_count / total_reviews) * 100, 1) if total_reviews else 0
+    critical_churn = int(critical_df["churn_risk"].sum())
+
+    c1, c2, c3 = st.columns(3)
+    c1.metric("1-2 Star Reviews", critical_count)
+    c2.metric("% of Total Reviews", f"{critical_pct}%")
+    c3.metric("Churn Risk Among These", critical_churn)
+
+    st.write("")
+    st.markdown("##### Category Breakdown (1-2 Star Only)")
+    critical_category_counts = critical_df["predicted_category"].value_counts()
+    if len(critical_category_counts) > 0:
+        interactive_bar_chart(critical_category_counts, RED)
+    else:
+        st.info("No 1-2 star reviews found in this dataset.")
+
+    st.write("")
+    st.markdown("##### All 1-2 Star Reviews (churn risk and urgent ones shown first)")
+    critical_sorted = critical_df.sort_values(by=["churn_risk", "urgency_score"], ascending=[False, False])
+    for _, row in critical_sorted.iterrows():
+        with st.container(border=True):
+            tags = f"**Rating:** {row['rating']}★ | **Category:** {row['predicted_category']} | **Urgency:** {row['urgency_score']} | **Churn Risk:** {row['churn_risk']}"
+            st.markdown(tags)
+            st.write(row["text"])
 
 st.divider()
 st.caption("Bulk classification powered by a pretrained zero-shot AI model (no training data required).")
