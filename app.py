@@ -621,7 +621,9 @@ with tab9:
     
     search_term = st.text_input("Search within critical reviews:", placeholder="e.g. login, refund, crash")
 
-    critical_sorted = critical_df.sort_values(by=["churn_risk", "urgency_score"], ascending=[False, False])
+    critical_sorted = critical_df.copy()
+    critical_sorted["_date_parsed"] = pd.to_datetime(critical_sorted["date"], errors="coerce")
+    critical_sorted = critical_sorted.sort_values(by=["churn_risk", "urgency_score", "_date_parsed"], ascending=[False, False, False])
     if search_term.strip():
         critical_sorted = critical_sorted[critical_sorted["text"].str.contains(search_term, case=False, na=False)]
         st.caption(f"{len(critical_sorted)} review(s) match '{search_term}'")
@@ -633,28 +635,27 @@ with tab9:
             st.write(row["text"])
 
 # ---------------- TAB 10: Device-Specific Issues ----------------
+# ---------------- TAB 10: Device-Specific Issues ----------------
 with tab10:
     st.subheader("Device-Specific Issues")
     st.caption("Detects when a customer mentions a specific phone brand/model in their complaint - useful for engineering triage.")
-
     device_df = df[(df["device_mentioned"] != "") & (df["predicted_category"] != "Positive")]
-
     if len(device_df) > 0:
         device_counts = device_df["device_mentioned"].value_counts()
         interactive_bar_chart(device_counts, RED)
-
         top_device = device_counts.index[0]
         top_device_count = int(device_counts.iloc[0])
         st.markdown(f'<div class="key-finding"><b>Key Finding:</b> \'{top_device}\' users report the most device-specific complaints ({top_device_count} mentions).</div>', unsafe_allow_html=True)
-
         st.write("")
         st.markdown("##### All Device-Specific Complaints")
-        for _, row in device_df.sort_values(by="device_mentioned").iterrows():
+        device_df_sorted = device_df.copy()
+        device_df_sorted["_date_parsed"] = pd.to_datetime(device_df_sorted["date"], errors="coerce")
+        device_df_sorted = device_df_sorted.sort_values(by="_date_parsed", ascending=False)
+        for _, row in device_df_sorted.iterrows():
             with st.container(border=True):
                 st.markdown(f"**Date:** {row['date']} | **Device:** {row['device_mentioned']} | **Category:** {row['predicted_category']}")
                 st.write(row["text"])
     else:
         st.info("No device-specific complaints found in this dataset.")
-
 st.divider()
 st.caption("Bulk classification powered by a pretrained zero-shot AI model (no training data required).")
