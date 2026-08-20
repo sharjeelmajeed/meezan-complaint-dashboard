@@ -33,6 +33,9 @@ html, body, [class*="css"] {{
     background-color: {BG};
     color: {TEXT_PRIMARY};
 }}
+[data-testid="stAppViewContainer"] {{
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.025'/%3E%3C/svg%3E");
+}}
 [data-testid="stAppViewContainer"], [data-testid="stHeader"] {{
     background-color: {BG} !important;
 }}
@@ -264,21 +267,42 @@ def render_kpi_row(items):
             <p class="kpi-value">{value_html}</p>
         </div>
         '''
-
     template = """
     <style>
     * { box-sizing: border-box; }
     body { margin: 0; font-family: 'Inter', sans-serif; background: transparent; }
     .kpi-row { display: flex; gap: 12px; }
     .kpi-card {
+        position: relative;
         flex: 1; background-color: @@CARD_BG@@; border: 1px solid @@BORDER@@;
         border-top: 2px solid @@GREEN@@; border-radius: 10px; padding: 14px 16px;
         transition: transform 0.2s ease, box-shadow 0.2s ease;
     }
     .kpi-card.purple { border-top-color: @@PURPLE@@; }
+    .kpi-card::after {
+        content: "";
+        position: absolute;
+        inset: -1px;
+        border-radius: 10px;
+        padding: 1px;
+        background: linear-gradient(120deg, @@GREEN@@, @@PURPLE@@, @@GREEN@@);
+        background-size: 200% 200%;
+        -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+        -webkit-mask-composite: xor;
+        mask-composite: exclude;
+        opacity: 0;
+        transition: opacity 0.3s ease;
+        animation: borderMove 3s linear infinite;
+    }
     .kpi-card:hover {
         transform: translateY(-4px);
         box-shadow: 0 8px 24px rgba(0,0,0,0.45);
+    }
+    .kpi-card:hover::after {
+        opacity: 1;
+    }
+    @keyframes borderMove {
+        to { background-position: 200% 200%; }
     }
     .kpi-label {
         font-size: 11px; color: @@TEXT_MUTED@@; font-weight: 600;
@@ -318,7 +342,6 @@ def render_kpi_row(items):
     template = template.replace("@@TEXT_PRIMARY@@", TEXT_PRIMARY)
     template = template.replace("@@CARDS@@", cards_html)
     return template
-
 # ---------------------------------------------------------------
 # Header / Hero
 # ---------------------------------------------------------------
