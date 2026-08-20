@@ -524,7 +524,7 @@ with tab6:
         )
         for _, row in priority_df.iterrows():
             with st.container(border=True):
-                st.markdown(f"**Category:** {row['predicted_category']} | **Urgency:** {row['urgency_score']} | **Churn Risk:** {row['churn_risk']}")
+                st.markdown(f"**Date:** {row['date']} | **Category:** {row['predicted_category']} | **Urgency:** {row['urgency_score']} | **Churn Risk:** {row['churn_risk']}")
                 st.write(row["text"])
     else:
         st.info("No high-priority complaints found in this dataset.")
@@ -569,7 +569,7 @@ with tab8:
                     for r in new_reviews:
                         cats, urgency, churn = classify_live(r.get("content", ""))
                         with st.container(border=True):
-                            st.markdown(f"**{r.get('userName', 'Unknown')}** (Rating: {r.get('score', '?')})")
+                            st.markdown(f"**{r.get('userName', 'Unknown')}** — {r.get('at', 'N/A')} (Rating: {r.get('score', '?')})")
                             st.write(r.get("content", ""))
                             st.markdown(f"**Detected Category:** {', '.join(cats)} | **Urgency:** {urgency} | **Churn Risk:** {'Yes' if churn else 'No'}")
                 else:
@@ -628,7 +628,7 @@ with tab9:
 
     for _, row in critical_sorted.iterrows():
         with st.container(border=True):
-            tags = f"**Rating:** {row['rating']}★ | **Category:** {row['predicted_category']} | **Urgency:** {row['urgency_score']} | **Churn Risk:** {row['churn_risk']}"
+            tags = f"**Date:** {row['date']} | **Rating:** {row['rating']}★ | **Category:** {row['predicted_category']} | **Urgency:** {row['urgency_score']} | **Churn Risk:** {row['churn_risk']}"
             st.markdown(tags)
             st.write(row["text"])
 
@@ -651,7 +651,7 @@ with tab10:
         st.markdown("##### All Device-Specific Complaints")
         for _, row in device_df.sort_values(by="device_mentioned").iterrows():
             with st.container(border=True):
-                st.markdown(f"**Device:** {row['device_mentioned']} | **Category:** {row['predicted_category']}")
+                st.markdown(f"**Date:** {row['date']} | **Device:** {row['device_mentioned']} | **Category:** {row['predicted_category']}")
                 st.write(row["text"])
     else:
         st.info("No device-specific complaints found in this dataset.")
