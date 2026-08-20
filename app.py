@@ -106,6 +106,15 @@ html, body, [class*="css"] {{
     margin-top: 0.9rem;
     max-width: 640px;
 }}
+@keyframes fadeInUp {{
+    from {{ opacity: 0; transform: translateY(12px); }}
+    to {{ opacity: 1; transform: translateY(0); }}
+}}
+.live-badge {{ animation: fadeInUp 0.5s ease forwards; opacity: 0; }}
+.eyebrow {{ animation: fadeInUp 0.5s ease forwards; animation-delay: 0.12s; opacity: 0; }}
+.hero-title {{ animation: fadeInUp 0.6s ease forwards; animation-delay: 0.24s; opacity: 0; }}
+.hero-subtitle {{ animation: fadeInUp 0.6s ease forwards; animation-delay: 0.4s; opacity: 0; 
+}}
 
 /* Section headers */
 h2, h3, .stMarkdown h5 {{
@@ -195,6 +204,11 @@ def load_data():
     return df
 
 df = load_data()
+
+import os
+from datetime import datetime
+data_mtime = os.path.getmtime("dashboard_data.csv")
+data_date_str = datetime.fromtimestamp(data_mtime).strftime("%B %d, %Y")
 
 # ---------------------------------------------------------------
 # Chart helper (dark-theme Plotly bar chart)
@@ -332,6 +346,7 @@ kpi_items = [
 ]
 
 components.html(render_kpi_row(kpi_items), height=140)
+st.caption(f"Data as of {data_date_str}")
 
 st.write("")
 
@@ -552,7 +567,14 @@ with tab9:
 
     st.write("")
     st.markdown("##### All 1-2 Star Reviews (churn risk and urgent ones shown first)")
+    
+    search_term = st.text_input("Search within critical reviews:", placeholder="e.g. login, refund, crash")
+
     critical_sorted = critical_df.sort_values(by=["churn_risk", "urgency_score"], ascending=[False, False])
+    if search_term.strip():
+        critical_sorted = critical_sorted[critical_sorted["text"].str.contains(search_term, case=False, na=False)]
+        st.caption(f"{len(critical_sorted)} review(s) match '{search_term}'")
+
     for _, row in critical_sorted.iterrows():
         with st.container(border=True):
             tags = f"**Rating:** {row['rating']}★ | **Category:** {row['predicted_category']} | **Urgency:** {row['urgency_score']} | **Churn Risk:** {row['churn_risk']}"
