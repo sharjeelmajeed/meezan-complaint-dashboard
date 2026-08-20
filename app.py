@@ -223,6 +223,18 @@ def load_data():
     return df
 
 df = load_data()
+device_brands = ["Samsung", "Vivo", "Oppo", "Xiaomi", "Redmi", "Realme", "Infinix", "Tecno",
+                  "Huawei", "Honor", "OnePlus", "Google Pixel", "Pixel", "Nokia", "Motorola",
+                  "iPhone", "iOS", "Poco", "Itel"]
+
+def extract_device(text):
+    text_l = str(text).lower()
+    for brand in device_brands:
+        if brand.lower() in text_l:
+            return "Google Pixel" if brand.lower() == "pixel" else brand
+    return ""
+
+df["device_mentioned"] = df["text"].apply(extract_device)
 
 import os
 from datetime import datetime
@@ -425,8 +437,8 @@ st.divider()
 # ---------------------------------------------------------------
 # Tabs for each section
 # ---------------------------------------------------------------
-tab1, tab2, tab3, tab4, tab5, tab6, tab7, tab8, tab9 = st.tabs([
-    "Overview", "Bugs", "Transactions", "UI/UX", "Feedback", "Priority Complaints", "Live Checker", "Play Store Monitor", "Critical Reviews (1-2★)"
+tab1, tab2, tab3, tab4, tab5, tab6, tab7, tab8, tab9, tab10 = st.tabs([
+    "Overview", "Bugs", "Transactions", "UI/UX", "Feedback", "Priority Complaints", "Live Checker", "Play Store Monitor", "Critical Reviews (1-2★)","Device-Specific Issues"
 ])
 
 # ---------------- TAB 1: Overview ----------------
@@ -619,6 +631,30 @@ with tab9:
             tags = f"**Rating:** {row['rating']}★ | **Category:** {row['predicted_category']} | **Urgency:** {row['urgency_score']} | **Churn Risk:** {row['churn_risk']}"
             st.markdown(tags)
             st.write(row["text"])
+
+# ---------------- TAB 10: Device-Specific Issues ----------------
+with tab10:
+    st.subheader("Device-Specific Issues")
+    st.caption("Detects when a customer mentions a specific phone brand/model in their complaint - useful for engineering triage.")
+
+    device_df = df[(df["device_mentioned"] != "") & (df["predicted_category"] != "Positive")]
+
+    if len(device_df) > 0:
+        device_counts = device_df["device_mentioned"].value_counts()
+        interactive_bar_chart(device_counts, RED)
+
+        top_device = device_counts.index[0]
+        top_device_count = int(device_counts.iloc[0])
+        st.markdown(f'<div class="key-finding"><b>Key Finding:</b> \'{top_device}\' users report the most device-specific complaints ({top_device_count} mentions).</div>', unsafe_allow_html=True)
+
+        st.write("")
+        st.markdown("##### All Device-Specific Complaints")
+        for _, row in device_df.sort_values(by="device_mentioned").iterrows():
+            with st.container(border=True):
+                st.markdown(f"**Device:** {row['device_mentioned']} | **Category:** {row['predicted_category']}")
+                st.write(row["text"])
+    else:
+        st.info("No device-specific complaints found in this dataset.")
 
 st.divider()
 st.caption("Bulk classification powered by a pretrained zero-shot AI model (no training data required).")
