@@ -71,7 +71,23 @@ html, body, [class*="css"] {{
     height: 7px;
     border-radius: 50%;
     background-color: {GREEN};
+    position: relative;
     animation: pulse 1.8s infinite;
+}}
+.live-dot::before {{
+    content: "";
+    position: absolute;
+    top: 50%; left: 50%;
+    width: 7px; height: 7px;
+    border-radius: 50%;
+    background-color: {GREEN};
+    transform: translate(-50%, -50%);
+    animation: ripple 1.8s infinite;
+    opacity: 0.6;
+}}
+@keyframes ripple {{
+    0% {{ transform: translate(-50%, -50%) scale(1); opacity: 0.6; }}
+    100% {{ transform: translate(-50%, -50%) scale(3.5); opacity: 0; }}
 }}
 @keyframes pulse {{
     0% {{ box-shadow: 0 0 0 0 rgba(34,197,94,0.5); }}
@@ -84,9 +100,17 @@ html, body, [class*="css"] {{
     font-size: 0.8rem;
     font-weight: 700;
     letter-spacing: 0.12em;
-    color: {GREEN};
     text-transform: uppercase;
     margin-bottom: 0.6rem;
+    background: linear-gradient(90deg, {GREEN} 0%, #B9F6CA 50%, {GREEN} 100%);
+    background-size: 200% auto;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: shimmer 3s linear infinite;
+}}
+@keyframes shimmer {{
+    to {{ background-position: -200% center; }}
 }}
 .hero-title {{
     font-family: 'Space Grotesk', sans-serif;
