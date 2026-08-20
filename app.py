@@ -37,22 +37,21 @@ html, body, [class*="css"] {{
     background-color: {BG} !important;
 }}
 
-/* Custom scrollbar */
 ::-webkit-scrollbar {{ width: 10px; height: 10px; }}
 ::-webkit-scrollbar-track {{ background: {BG}; }}
 ::-webkit-scrollbar-thumb {{ background: {BORDER}; border-radius: 10px; }}
 ::-webkit-scrollbar-thumb:hover {{ background: {GREEN}; }}
 * {{ scrollbar-width: thin; scrollbar-color: {BORDER} {BG}; }}
 
-/* Hero */
 .hero-wrap {{
     padding: 1rem 0 1.5rem 0;
 }}
 
-.hero-wrap > * {{
-    position: relative;
-    z-index: 1;
+@keyframes fadeInUp {{
+    from {{ opacity: 0; transform: translateY(12px); }}
+    to {{ opacity: 1; transform: translateY(0); }}
 }}
+
 .live-badge {{
     display: inline-flex;
     align-items: center;
@@ -65,6 +64,8 @@ html, body, [class*="css"] {{
     color: {TEXT_MUTED};
     font-weight: 600;
     margin-bottom: 0.9rem;
+    animation: fadeInUp 0.5s ease forwards;
+    opacity: 0;
 }}
 .live-dot {{
     width: 7px;
@@ -72,7 +73,7 @@ html, body, [class*="css"] {{
     border-radius: 50%;
     background-color: {GREEN};
     position: relative;
-    animation: pulse 1.8s infinite;
+    display: inline-block;
 }}
 .live-dot::before {{
     content: "";
@@ -81,18 +82,13 @@ html, body, [class*="css"] {{
     width: 7px; height: 7px;
     border-radius: 50%;
     background-color: {GREEN};
-    transform: translate(-50%, -50%);
-    animation: ripple 1.8s infinite;
+    transform: translate(-50%, -50%) scale(1);
+    animation: ripple 1.8s ease-out infinite;
     opacity: 0.6;
 }}
 @keyframes ripple {{
     0% {{ transform: translate(-50%, -50%) scale(1); opacity: 0.6; }}
-    100% {{ transform: translate(-50%, -50%) scale(3.5); opacity: 0; }}
-}}
-@keyframes pulse {{
-    0% {{ box-shadow: 0 0 0 0 rgba(34,197,94,0.5); }}
-    70% {{ box-shadow: 0 0 0 8px rgba(34,197,94,0); }}
-    100% {{ box-shadow: 0 0 0 0 rgba(34,197,94,0); }}
+    100% {{ transform: translate(-50%, -50%) scale(4); opacity: 0; }}
 }}
 
 .eyebrow {{
@@ -102,16 +98,20 @@ html, body, [class*="css"] {{
     letter-spacing: 0.12em;
     text-transform: uppercase;
     margin-bottom: 0.6rem;
-    background: linear-gradient(90deg, {GREEN} 0%, #B9F6CA 50%, {GREEN} 100%);
+    display: inline-block;
+    background: linear-gradient(90deg, {GREEN} 0%, #D4FADC 50%, {GREEN} 100%);
     background-size: 200% auto;
     -webkit-background-clip: text;
     background-clip: text;
     -webkit-text-fill-color: transparent;
-    animation: shimmer 3s linear infinite;
+    animation: shimmer 2.5s linear infinite, fadeInUp 0.5s ease forwards;
+    animation-delay: 0s, 0.12s;
+    opacity: 0;
 }}
 @keyframes shimmer {{
     to {{ background-position: -200% center; }}
 }}
+
 .hero-title {{
     font-family: 'Space Grotesk', sans-serif;
     font-weight: 700;
@@ -119,6 +119,9 @@ html, body, [class*="css"] {{
     line-height: 1.15;
     color: {TEXT_PRIMARY};
     margin: 0;
+    animation: fadeInUp 0.6s ease forwards;
+    animation-delay: 0.24s;
+    opacity: 0;
 }}
 .hero-title .glow {{
     color: {GREEN};
@@ -129,24 +132,16 @@ html, body, [class*="css"] {{
     color: {TEXT_MUTED};
     margin-top: 0.9rem;
     max-width: 640px;
-}}
-@keyframes fadeInUp {{
-    from {{ opacity: 0; transform: translateY(12px); }}
-    to {{ opacity: 1; transform: translateY(0); }}
-}}
-.live-badge {{ animation: fadeInUp 0.5s ease forwards; opacity: 0; }}
-.eyebrow {{ animation: fadeInUp 0.5s ease forwards; animation-delay: 0.12s; opacity: 0; }}
-.hero-title {{ animation: fadeInUp 0.6s ease forwards; animation-delay: 0.24s; opacity: 0; }}
-.hero-subtitle {{ animation: fadeInUp 0.6s ease forwards; animation-delay: 0.4s; opacity: 0; 
+    animation: fadeInUp 0.6s ease forwards;
+    animation-delay: 0.4s;
+    opacity: 0;
 }}
 
-/* Section headers */
 h2, h3, .stMarkdown h5 {{
     font-family: 'Space Grotesk', sans-serif;
     color: {TEXT_PRIMARY};
 }}
 
-/* Tabs */
 button[data-baseweb="tab"] {{
     font-weight: 600;
     color: {TEXT_MUTED};
@@ -156,7 +151,6 @@ button[data-baseweb="tab"][aria-selected="true"] {{
     border-bottom-color: {GREEN} !important;
 }}
 
-/* Buttons */
 .stButton>button {{
     background-color: {GREEN};
     color: #0A0B0D;
@@ -169,7 +163,6 @@ button[data-baseweb="tab"][aria-selected="true"] {{
     color: white;
 }}
 
-/* Key finding callout */
 .key-finding {{
     background-color: {CARD_BG};
     border: 1px solid {BORDER};
@@ -183,7 +176,6 @@ button[data-baseweb="tab"][aria-selected="true"] {{
     color: {TEXT_PRIMARY};
 }}
 
-/* Priority containers */
 [data-testid="stExpander"], [data-testid="stVerticalBlockBorderWrapper"] {{
     background-color: {CARD_BG};
     border-color: {BORDER} !important;
